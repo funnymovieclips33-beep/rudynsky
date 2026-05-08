@@ -139,6 +139,13 @@
   .editor-only { display: none !important; }
   body { --mode-client: true; }
   button, .btn { font-family: inherit; }
+
+  /* дополнительный стиль для условного блока SEO */
+  .seo-conditional {
+    margin-top: 12px;
+    padding-left: 16px;
+    border-left: 2px solid var(--gold);
+  }
 </style>
 </head>
 <body>
@@ -168,7 +175,7 @@
   // ─────────────────────────────────────────────────────────
   const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbxayv-tWZWpJ1wjZR5h4mGEGV_zMg05vpkJm1ZiQVZqkbfEhv1_-OGTk1qOrScZT6qWfQ/exec";
   
-  // ВСЕ ДАННЫЕ БРИФА (секции, поля, чеклисты, таблицы) — полностью сохранены
+  // ВСЕ ДАННЫЕ БРИФА (секции, поля, чеклисты, таблицы) — с изменениями в hosting и seo
   let sections = [
     { id:'meta', title:'Общая информация', type:'fields', fields:[
       { id:'f1', label:'Заказчик', type:'text', value:'Алексей Рудынский' },
@@ -178,10 +185,14 @@
       { id:'f5', label:'География', type:'text', value:'Беларусь, СНГ, онлайн' },
       { id:'f6', label:'Статус проекта', type:'radio', value:'Прототип готов', options:['Идея','ТЗ готово','Прототип готов','Редизайн'] },
     ]},
-    { id:'platform', title:'Платформа и хостинг', type:'fields', fields:[
+    // ---------- РАСШИРЕННЫЙ БЛОК ПЛАТФОРМА И ХОСТИНГ + ДОМЕНЫ ----------
+    { id:'platform', title:'Платформа, хостинг и домены', type:'fields', fields:[
       { id:'p1', label:'CMS', type:'radio', value:'WordPress', options:['WordPress','Tilda','Webflow','Wix','Кастомная'] },
-      { id:'p2', label:'Хостинг', type:'text', value:'Beget / TimeWeb / Hetzner' },
-      { id:'p3', label:'Домен', type:'text', value:'rudynsky.by / rudynsky.com' },
+      { id:'p2', label:'Желаемый хостинг', type:'radio', value:'ActiveCloud (Беларусь)', options:[
+        'ActiveCloud (Беларусь)', 'Hosting.by (Беларусь)', 'Seredrix (Беларусь)', 'beHost (Беларусь)',
+        'Reg.ru (Россия)', 'TimeWeb (Россия)', 'Beget (РФ)', 'Зарубежный (AWS, Hetzner)', 'Помогите выбрать'
+      ] },
+      { id:'p3', label:'Домен (какой планируете)', type:'radio', value:'.by', options:['.by', '.ru', '.com', 'пока не выбран'] },
       { id:'p4', label:'SSL', type:'radio', value:"Да (Let's Encrypt)", options:["Да (Let's Encrypt)",'Да (платный)','Нет'] },
     ]},
     { id:'design', title:'Дизайн и стиль', type:'fields', fields:[
@@ -239,12 +250,20 @@
       { id:'c11', label:'Видео-запись 1–2 минуты', checked:false },
       { id:'c12', label:'Домен: выбрать и зарегистрировать', checked:false },
     ]},
-    { id:'seo', title:'SEO', type:'fields', fields:[
-      { id:'s1', label:'Title страницы', type:'text', value:'Алексей Рудынский — Тренер по B2B продажам | Минск' },
-      { id:'s2', label:'Meta description', type:'textarea', value:'' },
-      { id:'s3', label:'Ключевые запросы', type:'textarea', value:'тренинг по продажам Беларусь, B2B тренинги Минск, тренер по переговорам' },
-      { id:'s4', label:'Open Graph', type:'radio', value:'Да', options:['Да','Нет'] },
-    ]},
+    // ---------- НОВЫЙ БЛОК SEO С ВЫБОРОМ И ЧЕКБОКСАМИ ----------
+    { id:'seo', title:'SEO (поисковая оптимизация)', type:'conditional_seo',
+      seo_choice: { id:'seo_choice', label:'Делаем базовую техническую SEO-оптимизацию?', value:'Да', options:['Да', 'Нет'] },
+      seo_items: [
+        { id:'seo1', label:'Настройка метатегов (Title, Description)', checked:true },
+        { id:'seo2', label:'Настройка robots.txt и sitemap.xml', checked:true },
+        { id:'seo3', label:'Семантическая разметка Schema.org (для организации, статей)', checked:true },
+        { id:'seo4', label:'Open Graph метатеги (для соцсетей)', checked:true },
+        { id:'seo5', label:'Добавление сайта в Google Search Console', checked:true },
+        { id:'seo6', label:'Добавление сайта в Яндекс.Вебмастер', checked:true },
+        { id:'seo7', label:'Базовый аудит скорости и оптимизация (PageSpeed)', checked:true },
+        { id:'seo8', label:'Проверка индексации и устранение дублей', checked:false }
+      ]
+    },
     { id:'timeline', title:'Этапы и сроки', type:'table',
       columns:['#','Этап','Состав работ','Срок'],
       rows:[
@@ -283,7 +302,7 @@
   function findField(sid, fid) { return findSection(sid).fields.find(f => f.id === fid); }
   function findItem(sid, iid) { return findSection(sid).items.find(i => i.id === iid); }
   
-  // Обновление значений (без сохранения через локальное хранилище — только в памяти)
+  // Обновление значений (стандартное)
   function updateFieldValue(sid, fid, val) { let f = findField(sid,fid); if(f) f.value = val; renderMain(); }
   function toggleCbOption(sid, fid, opt, checked) {
     let f = findField(sid,fid);
@@ -295,6 +314,24 @@
   }
   function toggleCheck(sid, iid, val) { let it = findItem(sid,iid); if(it) it.checked = val; renderMain(); }
   function updateCell(sid, rowIdx, colIdx, val) { let s = findSection(sid); if(s && s.rows[rowIdx]) s.rows[rowIdx][colIdx] = val; renderMain(); }
+  
+  // Специальные функции для условного SEO-раздела
+  function updateSeoChoice(val) {
+    let seoSection = sections.find(s => s.id === 'seo');
+    if(seoSection && seoSection.seo_choice) {
+      seoSection.seo_choice.value = val;
+      renderMain();
+    }
+  }
+  function toggleSeoItem(itemId, checked) {
+    let seoSection = sections.find(s => s.id === 'seo');
+    if(seoSection && seoSection.seo_items) {
+      let item = seoSection.seo_items.find(i => i.id === itemId);
+      if(item) item.checked = checked;
+      // не перерисовываем, только сохраняем состояние, т.к. рендер всё равно вызовется из onclick
+      renderMain();
+    }
+  }
   
   // ──────────────── ОТРИСОВКА ТОЛЬКО ДЛЯ КЛИЕНТА ─────────
   function renderSidebar() {
@@ -308,8 +345,16 @@
   function renderMain() {
     const main = document.getElementById('main');
     if(!main) return;
-    let html = sections.map((s,idx) => renderSection(s, idx)).join('');
-    // ВСЕГДА показываем форму отправки для клиента
+    let html = '';
+    for(let idx = 0; idx < sections.length; idx++) {
+      const s = sections[idx];
+      if(s.type === 'conditional_seo') {
+        html += renderConditionalSeo(s, idx);
+      } else {
+        html += renderSection(s, idx);
+      }
+    }
+    // Форма отправки
     html += `<div class="submit-area" id="submitArea">
       <h3>📨 Завершить и отправить</h3>
       <p>Проверьте ответы — они будут переданы разработчику</p>
@@ -392,6 +437,50 @@
     </tbody></table>`;
   }
   
+  // Специальный рендер для SEO-раздела с условием
+  function renderConditionalSeo(sec, idx) {
+    const choice = sec.seo_choice;
+    const showItems = (choice.value === 'Да');
+    const items = sec.seo_items || [];
+    
+    let choiceHtml = `<div class="field-row">
+      <div class="field-label">${esc(choice.label)}</div>
+      <div class="field-value">
+        <div class="radio-group">${choice.options.map(opt => `
+          <label class="radio-option ${choice.value === opt ? 'selected' : ''}" onclick="updateSeoChoice('${esc(opt)}')">
+            <input type="radio" ${choice.value === opt ? 'checked' : ''} name="seo_choice_radio"> ${esc(opt)}
+          </label>`).join('')}
+        </div>
+      </div>
+    </div>`;
+    
+    let itemsHtml = '';
+    if(showItems) {
+      itemsHtml = `<div class="seo-conditional">
+        <div style="margin-bottom: 8px; font-size: 12px; color: var(--gold);">✅ В базовую техническую SEO входит:</div>
+        <div class="checkbox-group">${items.map(item => `
+          <label class="check-row">
+            <input type="checkbox" ${item.checked ? 'checked' : ''} onchange="toggleSeoItem('${item.id}', this.checked)">
+            <span class="check-label-static">${esc(item.label)}</span>
+          </label>`).join('')}
+        </div>
+        <div style="margin-top: 10px; font-size: 11px; color: var(--muted); border-top: 1px dashed #333; padding-top: 8px;">
+          ⚠️ Внешнее SEO (размещение статей на других сайтах, закупка ссылок) — отдельная услуга, в этот пакет не входит.
+        </div>
+      </div>`;
+    }
+    
+    return `<div class="section" id="sec-${sec.id}">
+      <div class="section-header">
+        <div class="section-header-left">
+          <div class="section-num">${String(idx+1).padStart(2,'0')}</div>
+          <div class="section-title-static">${esc(sec.title)}</div>
+        </div>
+      </div>
+      <div class="section-body">${choiceHtml}${itemsHtml}</div>
+    </div>`;
+  }
+  
   // ──────────────── СБОР ДАННЫХ И ОТПРАВКА В GOOGLE SCRIPT ─────────
   function collectData() {
     const fields = [];
@@ -414,6 +503,15 @@
           fields.push({ label: s.title + ' / Строка ' + (i+1), value: row.join(' | ') });
         });
       }
+      else if(s.type === 'conditional_seo') {
+        // Добавляем выбор
+        fields.push({ label: s.title + ' / ' + s.seo_choice.label, value: s.seo_choice.value });
+        if(s.seo_choice.value === 'Да') {
+          s.seo_items.forEach(item => {
+            fields.push({ label: s.title + ' / ' + item.label, value: item.checked ? '✅ Включено' : '❌ Не включено' });
+          });
+        }
+      }
     });
     return fields;
   }
@@ -435,14 +533,12 @@
     };
     
     try {
-      // Используем режим no-cors для простоты, сервер всё равно примет POST
       await fetch(GOOGLE_SCRIPT_URL, {
         method: 'POST',
         mode: 'no-cors',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(payload)
       });
-      // no-cors не позволяет прочитать ответ, но мы показываем успех
       if(submitArea) {
         submitArea.innerHTML = `
           <div class="success-screen" style="display:block; background:transparent; border:none; padding:20px;">
@@ -486,6 +582,8 @@
   window.updateCell = updateCell;
   window.scrollToSection = scrollToSection;
   window.autoResize = autoResize;
+  window.updateSeoChoice = updateSeoChoice;
+  window.toggleSeoItem = toggleSeoItem;
   
   // Инициализация
   window.addEventListener('DOMContentLoaded', () => {
