@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Бриф — Алексей Рудынский</title>
+<title>Бриф для заказчика — Алексей Рудынский</title>
 <style>
   :root {
     --bg: #0d0d0d; --bg2: #161616; --bg3: #1e1e1e;
@@ -12,47 +12,64 @@
     --danger: #e05555; --green: #4caf7d;
   }
   * { box-sizing: border-box; margin: 0; padding: 0; }
-  body { background: var(--bg); color: var(--text); font-family: 'Segoe UI', system-ui, sans-serif; font-size: 14px; line-height: 1.6; }
+  body { 
+    background: var(--bg); 
+    color: var(--text); 
+    font-family: 'Segoe UI', system-ui, sans-serif; 
+    font-size: 14px; 
+    line-height: 1.6; 
+  }
 
-  /* HEADER */
-  .header { background: var(--bg2); border-bottom: 1px solid var(--gold); padding: 14px 28px; display: flex; align-items: center; justify-content: space-between; position: sticky; top: 0; z-index: 100; gap: 12px; flex-wrap: wrap; }
+  /* HEADER — упрощённый, только для клиента */
+  .header { 
+    background: var(--bg2); 
+    border-bottom: 1px solid var(--gold); 
+    padding: 14px 28px; 
+    display: flex; 
+    align-items: center; 
+    justify-content: space-between; 
+    position: sticky; 
+    top: 0; 
+    z-index: 100; 
+    gap: 12px; 
+    flex-wrap: wrap; 
+  }
   .header-left h1 { font-size: 16px; font-weight: 700; letter-spacing: .04em; }
   .header-left h1 span { color: var(--gold); }
   .header-left p { font-size: 11px; color: var(--muted); margin-top: 2px; }
-  .header-right { display: flex; gap: 8px; align-items: center; flex-wrap: wrap; }
-  .mode-toggle { display: flex; background: var(--bg3); border: 1px solid var(--border); border-radius: 8px; overflow: hidden; }
-  .mode-btn { padding: 7px 14px; font-size: 12px; font-weight: 600; cursor: pointer; border: none; background: transparent; color: var(--muted); transition: all .15s; }
-  .mode-btn.active { background: var(--gold); color: #080808; }
-
-  .btn { border: none; cursor: pointer; border-radius: 6px; padding: 8px 16px; font-size: 13px; font-weight: 600; transition: all .15s; }
-  .btn-gold { background: var(--gold); color: #080808; }
-  .btn-gold:hover { background: var(--gold-light); }
-  .btn-outline { background: transparent; border: 1px solid var(--border); color: var(--muted); }
-  .btn-outline:hover { border-color: var(--gold); color: var(--gold); }
-  .btn-danger { background: transparent; border: 1px solid #444; color: var(--muted); }
-  .btn-danger:hover { border-color: var(--danger); color: var(--danger); }
-  .btn-green { background: var(--green); color: #080808; font-size: 14px; padding: 10px 22px; }
-  .btn-green:hover { opacity: .85; }
-
-  /* SETUP BANNER */
-  .setup-banner { background: rgba(200,168,75,.08); border: 1px solid rgba(200,168,75,.3); border-radius: 10px; padding: 18px 22px; margin: 20px 28px 0; display: flex; gap: 16px; align-items: flex-start; }
-  .setup-banner.hidden { display: none; }
-  .setup-icon { font-size: 22px; flex-shrink: 0; margin-top: 2px; }
-  .setup-content h3 { font-size: 14px; color: var(--gold); margin-bottom: 8px; }
-  .setup-steps { font-size: 12px; color: var(--muted); line-height: 2; }
-  .setup-steps b { color: var(--text); }
-  .setup-steps a { color: var(--gold); }
-  .script-box { background: var(--bg3); border: 1px solid var(--border); border-radius: 6px; padding: 10px 14px; font-family: monospace; font-size: 11px; color: #aaa; margin: 8px 0; white-space: pre-wrap; max-height: 120px; overflow-y: auto; }
-  .url-row { display: flex; gap: 8px; margin-top: 10px; align-items: center; }
-  .url-input { flex: 1; background: var(--bg3); border: 1px solid var(--border); border-radius: 6px; padding: 8px 12px; color: var(--text); font-size: 12px; outline: none; font-family: inherit; }
-  .url-input:focus { border-color: var(--gold); }
-  .url-input::placeholder { color: #555; }
-
+  
   /* LAYOUT */
-  .layout { display: flex; min-height: calc(100vh - 120px); }
-  .sidebar { width: 220px; min-width: 180px; background: var(--bg2); border-right: 1px solid var(--border); padding: 16px 0; position: sticky; top: 57px; height: calc(100vh - 57px); overflow-y: auto; }
-  .sidebar-title { font-size: 10px; letter-spacing: .12em; color: var(--muted); text-transform: uppercase; padding: 0 16px 10px; }
-  .nav-item { padding: 8px 16px; cursor: pointer; border-left: 3px solid transparent; font-size: 12px; color: var(--muted); transition: all .15s; display: flex; align-items: center; justify-content: space-between; }
+  .layout { display: flex; min-height: calc(100vh - 80px); }
+  .sidebar { 
+    width: 240px; 
+    min-width: 200px; 
+    background: var(--bg2); 
+    border-right: 1px solid var(--border); 
+    padding: 20px 0; 
+    position: sticky; 
+    top: 68px; 
+    height: calc(100vh - 68px); 
+    overflow-y: auto; 
+  }
+  .sidebar-title { 
+    font-size: 10px; 
+    letter-spacing: .12em; 
+    color: var(--gold); 
+    text-transform: uppercase; 
+    padding: 0 20px 12px; 
+    font-weight: 600; 
+  }
+  .nav-item { 
+    padding: 8px 20px; 
+    cursor: pointer; 
+    border-left: 3px solid transparent; 
+    font-size: 13px; 
+    color: var(--muted); 
+    transition: all .15s; 
+    display: flex; 
+    align-items: center; 
+    justify-content: space-between; 
+  }
   .nav-item:hover { color: var(--text); background: rgba(200,168,75,.05); }
   .nav-item.active { color: var(--gold); border-left-color: var(--gold); background: rgba(200,168,75,.08); }
   .nav-num { font-size: 10px; color: var(--gold); opacity: .6; font-weight: 700; }
@@ -61,615 +78,425 @@
 
   /* SECTION */
   .section { background: var(--bg2); border: 1px solid var(--border); border-radius: 10px; margin-bottom: 22px; overflow: hidden; }
-  .section-header { display: flex; align-items: center; justify-content: space-between; padding: 14px 18px; background: var(--bg3); border-bottom: 1px solid var(--border); gap: 10px; }
-  .section-header-left { display: flex; align-items: center; gap: 10px; flex: 1; }
-  .section-num { background: var(--gold); color: #080808; font-weight: 800; font-size: 11px; padding: 3px 7px; border-radius: 4px; min-width: 30px; text-align: center; }
-  .section-title-input { background: transparent; border: none; outline: none; color: var(--text); font-size: 14px; font-weight: 700; flex: 1; }
-  .section-title-input:focus { border-bottom: 1px solid var(--gold); }
-  .section-title-static { font-size: 14px; font-weight: 700; color: var(--text); }
-  .section-actions { display: flex; gap: 6px; }
-
+  .section-header { display: flex; align-items: center; justify-content: space-between; padding: 15px 20px; background: var(--bg3); border-bottom: 1px solid var(--border); }
+  .section-header-left { display: flex; align-items: center; gap: 12px; }
+  .section-num { background: var(--gold); color: #080808; font-weight: 800; font-size: 11px; padding: 3px 8px; border-radius: 4px; min-width: 32px; text-align: center; }
+  .section-title-static { font-size: 15px; font-weight: 700; color: var(--text); letter-spacing: -0.2px; }
+  
   /* FIELDS */
-  .section-body { padding: 18px; }
-  .field-row { display: flex; align-items: flex-start; gap: 10px; padding: 8px 0; border-bottom: 1px solid rgba(255,255,255,.04); }
+  .section-body { padding: 20px; }
+  .field-row { display: flex; align-items: flex-start; gap: 16px; padding: 10px 0; border-bottom: 1px solid rgba(255,255,255,.04); }
   .field-row:last-of-type { border-bottom: none; }
-  .field-label { min-width: 190px; color: var(--muted); font-size: 12px; padding-top: 7px; }
-  .field-label-input { background: transparent; border: none; outline: none; color: var(--muted); font-size: 12px; width: 100%; border-bottom: 1px dashed transparent; }
-  .field-label-input:focus { border-bottom-color: var(--border); color: var(--text); }
+  .field-label { min-width: 200px; color: var(--gold); font-size: 13px; font-weight: 500; padding-top: 6px; }
   .field-value { flex: 1; }
-  .field-input { background: rgba(255,255,255,.04); border: 1px solid transparent; outline: none; color: var(--text); font-size: 13px; padding: 5px 10px; border-radius: 5px; width: 100%; font-family: inherit; resize: vertical; transition: border-color .15s; }
+  .field-input { background: rgba(255,255,255,.04); border: 1px solid var(--border); outline: none; color: var(--text); font-size: 13px; padding: 8px 12px; border-radius: 8px; width: 100%; font-family: inherit; transition: all .15s; }
   .field-input:focus { border-color: var(--gold); background: rgba(200,168,75,.05); }
-  .field-remove { background: none; border: none; cursor: pointer; color: #444; font-size: 16px; padding: 4px 6px; transition: color .15s; line-height: 1; }
-  .field-remove:hover { color: var(--danger); }
-
+  textarea.field-input { resize: vertical; }
+  
   /* RADIO */
-  .radio-group { display: flex; flex-wrap: wrap; gap: 7px; }
-  .radio-option { display: flex; align-items: center; gap: 5px; background: rgba(255,255,255,.04); border: 1px solid var(--border); padding: 5px 12px; border-radius: 20px; cursor: pointer; transition: all .15s; font-size: 13px; }
+  .radio-group { display: flex; flex-wrap: wrap; gap: 10px; }
+  .radio-option { display: flex; align-items: center; gap: 6px; background: rgba(255,255,255,.04); border: 1px solid var(--border); padding: 6px 16px; border-radius: 40px; cursor: pointer; transition: all .15s; font-size: 13px; }
   .radio-option:hover { border-color: var(--gold); }
   .radio-option.selected { border-color: var(--gold); background: rgba(200,168,75,.12); color: var(--gold); }
   .radio-option input { display: none; }
 
   /* CHECKBOX GROUP */
-  .checkbox-group { display: flex; flex-direction: column; gap: 6px; }
-  .check-row { display: flex; align-items: center; gap: 8px; padding: 5px 0; border-bottom: 1px solid rgba(255,255,255,.03); }
+  .checkbox-group { display: flex; flex-direction: column; gap: 10px; }
+  .check-row { display: flex; align-items: center; gap: 10px; padding: 6px 0; border-bottom: 1px solid rgba(255,255,255,.03); }
   .check-row:last-child { border-bottom: none; }
-  input[type=checkbox] { accent-color: var(--gold); width: 15px; height: 15px; cursor: pointer; flex-shrink: 0; }
-  .check-label-input { background: transparent; border: none; outline: none; color: var(--text); font-size: 13px; flex: 1; border-bottom: 1px dashed transparent; font-family: inherit; }
-  .check-label-input:focus { border-bottom-color: var(--border); }
-  .check-label-static { font-size: 13px; flex: 1; color: var(--text); }
+  input[type=checkbox] { accent-color: var(--gold); width: 18px; height: 18px; cursor: pointer; flex-shrink: 0; }
+  .check-label-static { font-size: 13px; color: var(--text); flex: 1; }
 
   /* TABLE */
-  .brief-table { width: 100%; border-collapse: collapse; }
-  .brief-table th, .brief-table td { padding: 7px 10px; border: 1px solid var(--border); font-size: 12px; vertical-align: top; }
-  .brief-table th { background: var(--bg3); color: var(--gold); font-weight: 600; font-size: 11px; letter-spacing: .04em; }
-  .td-input { background: transparent; border: none; outline: none; color: var(--text); font-size: 12px; width: 100%; font-family: inherit; resize: none; }
-  .td-input:focus { background: rgba(200,168,75,.04); }
-
-  /* ADD BUTTONS */
-  .add-row-btn { display: flex; align-items: center; gap: 6px; background: transparent; border: 1px dashed var(--border); color: var(--muted); cursor: pointer; border-radius: 6px; padding: 6px 12px; font-size: 12px; margin-top: 8px; width: 100%; transition: all .15s; font-family: inherit; }
-  .add-row-btn:hover { border-color: var(--gold); color: var(--gold); }
-  .add-section-area { border: 2px dashed var(--border); border-radius: 10px; padding: 20px; text-align: center; cursor: pointer; transition: all .15s; margin-bottom: 16px; }
-  .add-section-area:hover { border-color: var(--gold); color: var(--gold); }
-  .add-section-area span { font-size: 13px; color: var(--muted); }
+  .brief-table { width: 100%; border-collapse: collapse; margin: 8px 0; }
+  .brief-table th, .brief-table td { padding: 10px 12px; border: 1px solid var(--border); font-size: 12px; vertical-align: top; }
+  .brief-table th { background: var(--bg3); color: var(--gold); font-weight: 600; font-size: 12px; letter-spacing: .04em; }
+  .td-input { background: transparent; border: none; outline: none; color: var(--text); font-size: 12px; width: 100%; font-family: inherit; resize: vertical; padding: 4px; }
+  .td-input:focus { background: rgba(200,168,75,.04); border-radius: 4px; }
 
   /* SUBMIT AREA */
-  .submit-area { background: var(--bg2); border: 1px solid var(--border); border-radius: 10px; padding: 28px; text-align: center; margin-bottom: 24px; }
-  .submit-area h3 { font-size: 16px; margin-bottom: 8px; }
-  .submit-area p { color: var(--muted); font-size: 13px; margin-bottom: 20px; }
-  .submit-area.hidden { display: none; }
-  .client-name-row { display: flex; gap: 10px; max-width: 420px; margin: 0 auto 16px; }
-  .client-name-row input { flex: 1; background: rgba(255,255,255,.05); border: 1px solid var(--border); border-radius: 7px; padding: 9px 14px; color: var(--text); font-size: 14px; outline: none; font-family: inherit; }
+  .submit-area { background: var(--bg2); border: 1px solid var(--border); border-radius: 14px; padding: 32px; text-align: center; margin-bottom: 24px; }
+  .submit-area h3 { font-size: 18px; margin-bottom: 8px; color: var(--gold); }
+  .submit-area p { color: var(--muted); font-size: 13px; margin-bottom: 24px; }
+  .client-name-row { display: flex; gap: 12px; max-width: 420px; margin: 0 auto 20px; }
+  .client-name-row input { flex: 1; background: rgba(255,255,255,.05); border: 1px solid var(--border); border-radius: 10px; padding: 12px 16px; color: var(--text); font-size: 14px; outline: none; font-family: inherit; }
   .client-name-row input:focus { border-color: var(--gold); }
-  .sending-state { display: none; }
-
+  .btn-green { background: var(--green); color: #080808; font-size: 15px; padding: 12px 28px; font-weight: 700; border: none; border-radius: 40px; cursor: pointer; transition: .2s; }
+  .btn-green:hover { background: #5fce92; transform: scale(1.01); }
+  .sending-state { display: none; margin-top: 16px; color: var(--muted); font-size: 13px; }
+  
   /* SUCCESS SCREEN */
-  .success-screen { display: none; text-align: center; padding: 60px 40px; }
-  .success-screen .icon { font-size: 56px; margin-bottom: 16px; }
-  .success-screen h2 { font-size: 22px; color: var(--gold); margin-bottom: 10px; }
+  .success-screen { display: none; text-align: center; padding: 60px 40px; background: var(--bg2); border-radius: 20px; border: 1px solid var(--gold); }
+  .success-screen .icon { font-size: 64px; margin-bottom: 20px; }
+  .success-screen h2 { font-size: 24px; color: var(--gold); margin-bottom: 12px; }
   .success-screen p { color: var(--muted); font-size: 14px; }
-
-  /* MODALS */
-  .modal-overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,.75); z-index: 200; align-items: center; justify-content: center; }
-  .modal-overlay.open { display: flex; }
-  .modal { background: var(--bg2); border: 1px solid var(--border); border-radius: 12px; padding: 26px; width: 460px; max-width: 95vw; }
-  .modal h3 { font-size: 15px; margin-bottom: 16px; color: var(--gold); }
-  .modal label { font-size: 12px; color: var(--muted); display: block; margin-bottom: 4px; margin-top: 12px; }
-  .modal input, .modal select { width: 100%; background: rgba(255,255,255,.05); border: 1px solid var(--border); outline: none; color: var(--text); padding: 8px 12px; border-radius: 6px; font-family: inherit; font-size: 13px; }
-  .modal input:focus { border-color: var(--gold); }
-  .field-type-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-top: 6px; }
-  .type-card { border: 1px solid var(--border); border-radius: 7px; padding: 10px 14px; cursor: pointer; transition: all .15s; font-size: 12px; color: var(--muted); }
-  .type-card:hover { border-color: var(--gold); color: var(--text); }
-  .type-card.selected { border-color: var(--gold); background: rgba(200,168,75,.1); color: var(--gold); }
-  .type-card .type-icon { font-size: 18px; display: block; margin-bottom: 3px; }
-  .modal-actions { display: flex; gap: 8px; justify-content: flex-end; margin-top: 18px; }
-
+  
   /* TOAST */
-  .toast { position: fixed; bottom: 24px; right: 24px; background: var(--bg3); border: 1px solid var(--gold); color: var(--text); padding: 11px 18px; border-radius: 8px; font-size: 13px; opacity: 0; transition: opacity .3s; z-index: 300; pointer-events: none; }
+  .toast { position: fixed; bottom: 24px; right: 24px; background: var(--bg3); border: 1px solid var(--gold); color: var(--text); padding: 12px 20px; border-radius: 40px; font-size: 13px; opacity: 0; transition: opacity .3s; z-index: 300; pointer-events: none; }
   .toast.show { opacity: 1; }
-
-  /* CLIENT MODE overrides */
-  body.client-mode .editor-only { display: none !important; }
-  body.client-mode .section-title-input { pointer-events: none; }
-  body.editor-mode .client-only { display: none !important; }
+  
+  /* Скрываем любые редакторские элементы */
+  .editor-only { display: none !important; }
+  body { --mode-client: true; }
+  button, .btn { font-family: inherit; }
 </style>
 </head>
-<body class="editor-mode">
+<body>
 
-<!-- HEADER -->
+<!-- Упрощённый хедер — без переключения режимов, без кнопок редактора -->
 <div class="header">
   <div class="header-left">
     <h1>БРИФ · <span>Алексей Рудынский</span></h1>
-    <p id="modeLabel">Режим редактора — настройте бриф и отправьте заказчику</p>
-  </div>
-  <div class="header-right">
-    <div class="mode-toggle">
-      <button class="mode-btn active" id="btnEditor" onclick="setMode('editor')">✏️ Редактор</button>
-      <button class="mode-btn" id="btnClient" onclick="setMode('client')">👤 Заказчик</button>
-    </div>
-    <button class="btn btn-outline editor-only" onclick="addSection()">+ Раздел</button>
-    <button class="btn btn-gold editor-only" onclick="saveAndShare()">⬇ Скачать для отправки</button>
-  </div>
-</div>
-
-<!-- SETUP BANNER (editor only) -->
-<div class="setup-banner editor-only" id="setupBanner">
-  <div class="setup-icon">⚙️</div>
-  <div class="setup-content">
-    <h3>Подключите Google Sheets — один раз, 10 минут</h3>
-    <div class="setup-steps">
-      <b>1.</b> Создайте новую <a href="https://sheets.google.com" target="_blank">Google таблицу</a> — она будет хранить ответы<br>
-      <b>2.</b> В таблице: <b>Расширения → Apps Script</b> — вставьте этот код и нажмите «Развернуть → Новое развёртывание → Веб-приложение»<br>
-      <b>3.</b> Доступ: «Все» → скопируйте URL развёртывания → вставьте ниже<br>
-      <b>4.</b> Нажмите «Сохранить» — готово! Скачайте бриф и отправьте заказчику
-    </div>
-    <div class="script-box" id="appsScriptCode">function doPost(e) {
-  var sheet = SpreadsheetApp.getActiveSpreadsheet().getActiveSheet();
-  var data = JSON.parse(e.postData.contents);
-  var row = [new Date(), data.clientName || '—'];
-  data.fields.forEach(function(f) { row.push(f.label + ': ' + f.value); });
-  sheet.appendRow(row);
-  return ContentService.createTextOutput(JSON.stringify({status:'ok'}))
-    .setMimeType(ContentService.MimeType.JSON);
-}</div>
-    <button class="btn btn-outline" style="font-size:11px;padding:4px 10px;margin-bottom:8px" onclick="copyScript()">📋 Скопировать код</button>
-    <div class="url-row">
-      <input class="url-input" id="sheetsUrl" placeholder="https://script.google.com/macros/s/XXXXX/exec" oninput="saveSheetsUrl()">
-      <button class="btn btn-gold" style="font-size:12px;padding:8px 14px" onclick="testConnection()">Проверить</button>
-    </div>
-    <div id="urlStatus" style="font-size:11px;margin-top:6px;color:var(--muted)"></div>
+    <p>Заполните форму — данные отправятся разработчику</p>
   </div>
 </div>
 
 <div class="layout">
-  <!-- SIDEBAR -->
+  <!-- SIDEBAR (навигация) -->
   <div class="sidebar" id="sidebar"></div>
 
-  <!-- MAIN -->
+  <!-- MAIN контент (динамический) -->
   <div class="main" id="main"></div>
 </div>
 
-<!-- MODALS -->
-<div class="modal-overlay" id="fieldModal">
-  <div class="modal">
-    <h3>Добавить поле</h3>
-    <label>Название поля</label>
-    <input type="text" id="newFieldLabel" placeholder="Например: Бюджет проекта">
-    <label>Тип поля</label>
-    <div class="field-type-grid" id="fieldTypeGrid">
-      <div class="type-card selected" data-type="text" onclick="selectType(this)"><span class="type-icon">📝</span>Текст</div>
-      <div class="type-card" data-type="textarea" onclick="selectType(this)"><span class="type-icon">📄</span>Длинный текст</div>
-      <div class="type-card" data-type="checkbox" onclick="selectType(this)"><span class="type-icon">☑️</span>Чекбоксы</div>
-      <div class="type-card" data-type="radio" onclick="selectType(this)"><span class="type-icon">🔘</span>Выбор варианта</div>
-    </div>
-    <div id="radioOptionsArea" style="display:none;margin-top:12px">
-      <label>Варианты (через запятую)</label>
-      <input type="text" id="radioOptions" placeholder="Вариант 1, Вариант 2, Вариант 3">
-    </div>
-    <div class="modal-actions">
-      <button class="btn btn-outline" onclick="closeFieldModal()">Отмена</button>
-      <button class="btn btn-gold" onclick="confirmAddField()">Добавить</button>
-    </div>
-  </div>
-</div>
-
-<div class="modal-overlay" id="sectionModal">
-  <div class="modal">
-    <h3>Новый раздел</h3>
-    <label>Название</label>
-    <input type="text" id="newSectionTitle" placeholder="Например: Конкуренты">
-    <label>Тип</label>
-    <div class="field-type-grid" style="margin-top:6px">
-      <div class="type-card selected" data-stype="fields" onclick="selectSType(this)"><span class="type-icon">📋</span>Поля</div>
-      <div class="type-card" data-stype="checklist" onclick="selectSType(this)"><span class="type-icon">✅</span>Чеклист</div>
-      <div class="type-card" data-stype="table" onclick="selectSType(this)"><span class="type-icon">📊</span>Таблица</div>
-    </div>
-    <div class="modal-actions">
-      <button class="btn btn-outline" onclick="closeSectionModal()">Отмена</button>
-      <button class="btn btn-gold" onclick="confirmAddSection()">Создать</button>
-    </div>
-  </div>
-</div>
-
+<!-- TOAST уведомления -->
 <div class="toast" id="toast"></div>
 
 <script>
-// ── DATA ──────────────────────────────────────────────────────────
-let sections = [
-  { id:'meta', title:'Общая информация', type:'fields', fields:[
-    { id:'f1', label:'Заказчик', type:'text', value:'Алексей Рудынский' },
-    { id:'f2', label:'Проект', type:'text', value:'Лендинг — B2B тренер по продажам и переговорам' },
-    { id:'f3', label:'Тип сайта', type:'radio', value:'Лендинг', options:['Лендинг','Многостраничный','Интернет-магазин','Корпоративный'] },
-    { id:'f4', label:'Аудитория', type:'textarea', value:'Коммерческие директора, РОПы, HR, собственники B2B компаний' },
-    { id:'f5', label:'География', type:'text', value:'Беларусь, СНГ, онлайн' },
-    { id:'f6', label:'Статус проекта', type:'radio', value:'Прототип готов', options:['Идея','ТЗ готово','Прототип готов','Редизайн'] },
-  ]},
-  { id:'platform', title:'Платформа и хостинг', type:'fields', fields:[
-    { id:'p1', label:'CMS', type:'radio', value:'WordPress', options:['WordPress','Tilda','Webflow','Wix','Кастомная'] },
-    { id:'p2', label:'Хостинг', type:'text', value:'Beget / TimeWeb / Hetzner' },
-    { id:'p3', label:'Домен', type:'text', value:'rudynsky.by / rudynsky.com' },
-    { id:'p4', label:'SSL', type:'radio', value:"Да (Let's Encrypt)", options:["Да (Let's Encrypt)",'Да (платный)','Нет'] },
-  ]},
-  { id:'design', title:'Дизайн и стиль', type:'fields', fields:[
-    { id:'d1', label:'Концепция', type:'radio', value:'Тёмный / Industrial', options:['Тёмный / Industrial','Светлый / Минимализм','Корпоративный','Яркий / Стартап'] },
-    { id:'d2', label:'Цвет фона', type:'text', value:'#080808' },
-    { id:'d3', label:'Акцентный цвет', type:'text', value:'#C8A84B (золотой)' },
-    { id:'d4', label:'Шрифт заголовков', type:'text', value:'Bebas Neue' },
-    { id:'d5', label:'Шрифт текста', type:'text', value:'Raleway' },
-    { id:'d6', label:'Анимации', type:'radio', value:'Лёгкие (hover + fadeIn)', options:['Нет','Лёгкие (hover + fadeIn)','Средние','Тяжёлые'] },
-    { id:'d7', label:'Стоковые фото', type:'radio', value:'Нет', options:['Да','Нет','Только иконки'] },
-  ]},
-  { id:'blocks', title:'Структура — блоки сайта', type:'table',
-    columns:['#','Блок','Содержание','Статус'],
-    rows:[
-      ['01','Hero','Заголовок, фото, статистика, 2 кнопки CTA','✅ Готов'],
-      ['02','Proof bar','Строка с отраслями опыта','✅ Готов'],
-      ['03','Для кого','6 отраслей + роли покупателей','✅ Готов'],
-      ['04','Боли клиента','8 карточек проблем отдела','✅ Готов'],
-      ['05','Как работаем','5 шагов процесса + философия','✅ Готов'],
-      ['06','Отличие','Не скрипты — позиция. Сравнение 2 подходов','✅ Готов'],
-      ['07','Программы','5 модулей с описанием и результатами','✅ Готов'],
-      ['08','Форматы','6 форматов работы','✅ Готов'],
-      ['09','Обо мне','Биография, цифры, таймлайн опыта','✅ Готов'],
-      ['10','Видео','Заглушка → потом реальное видео 1-2 мин','⏳ Заглушка'],
-      ['11','Кейсы','3 кейса (ориентировочные цифры)','⏳ Нужны реальные'],
-      ['12','CTA / Контакт','4 кнопки: TG, WA, LinkedIn, Email','✅ Готов (нужны ссылки)'],
-    ]
-  },
-  { id:'tech', title:'Технические требования', type:'fields', fields:[
-    { id:'t1', label:'PageSpeed Desktop', type:'radio', value:'90+', options:['85+','90+','95+'] },
-    { id:'t2', label:'PageSpeed Mobile', type:'radio', value:'85+', options:['75+','80+','85+'] },
-    { id:'t3', label:'Время загрузки (1 экран)', type:'text', value:'< 2.5 секунды' },
-    { id:'t4', label:'Мобильная адаптация', type:'radio', value:'Да — обязательно', options:['Да — обязательно','Базовая','Не нужна'] },
-    { id:'t5', label:'Обязательные плагины', type:'textarea', value:'Yoast SEO, Contact Form 7, WP Super Cache, Smush, UpdraftPlus, Wordfence, ACF, Flamingo' },
-  ]},
-  { id:'integrations', title:'Контакты и интеграции', type:'fields', fields:[
-    { id:'i1', label:'Telegram', type:'text', value:'' },
-    { id:'i2', label:'WhatsApp', type:'text', value:'' },
-    { id:'i3', label:'Email для заявок', type:'text', value:'' },
-    { id:'i4', label:'LinkedIn', type:'text', value:'' },
-    { id:'i5', label:'Защита форм', type:'radio', value:'reCAPTCHA v3', options:['reCAPTCHA v3','Cloudflare Turnstile','Нет'] },
-    { id:'i6', label:'Аналитика', type:'checkbox', options:['Google Analytics 4','Яндекс.Метрика','Google Search Console','Hotjar / Clarity'], value:['Google Analytics 4','Яндекс.Метрика','Google Search Console'] },
-  ]},
-  { id:'content', title:'Контент — что готово', type:'checklist', items:[
-    { id:'c1', label:'Фотография заказчика (деловой стиль)', checked:true },
-    { id:'c2', label:'Тексты всех блоков сайта', checked:true },
-    { id:'c3', label:'Структура и описания 5 программ тренингов', checked:true },
-    { id:'c4', label:'Биография и опыт работы', checked:true },
-    { id:'c5', label:'Список отраслей и целевой аудитории', checked:true },
-    { id:'c6', label:'Telegram username', checked:false },
-    { id:'c7', label:'WhatsApp номер (с кодом страны)', checked:false },
-    { id:'c8', label:'Email для приёма заявок', checked:false },
-    { id:'c9', label:'Реальные кейсы с цифрами (хотя бы 1–2)', checked:false },
-    { id:'c10', label:'Отзывы от коллег или компаний', checked:false },
-    { id:'c11', label:'Видео-запись 1–2 минуты', checked:false },
-    { id:'c12', label:'Домен: выбрать и зарегистрировать', checked:false },
-  ]},
-  { id:'seo', title:'SEO', type:'fields', fields:[
-    { id:'s1', label:'Title страницы', type:'text', value:'Алексей Рудынский — Тренер по B2B продажам | Минск' },
-    { id:'s2', label:'Meta description', type:'textarea', value:'' },
-    { id:'s3', label:'Ключевые запросы', type:'textarea', value:'тренинг по продажам Беларусь, B2B тренинги Минск, тренер по переговорам' },
-    { id:'s4', label:'Open Graph', type:'radio', value:'Да', options:['Да','Нет'] },
-  ]},
-  { id:'timeline', title:'Этапы и сроки', type:'table',
-    columns:['#','Этап','Состав работ','Срок'],
-    rows:[
-      ['1','Подготовка','Хостинг, домен, установка WP, SSL','1–2 дня'],
-      ['2','Тема и структура','Кастомная тема, перенос HTML/CSS, ACF','3–5 дней'],
-      ['3','Контент','Тексты, фото, кастомные поля','2–3 дня'],
-      ['4','Мобильная версия','Адаптация на всех брейкпоинтах','1–2 дня'],
-      ['5','Формы и интеграции','Contact Form 7, reCAPTCHA, мессенджеры','1 день'],
-      ['6','SEO и аналитика','Yoast, GA4, Метрика, Search Console','1 день'],
-      ['7','Оптимизация','PageSpeed, кэш, минификация','1 день'],
-      ['8','Безопасность','Wordfence, UpdraftPlus, wp-admin','0.5 дня'],
-      ['9','Финальная проверка','Кросс-браузер, ссылки, сдача','1 день'],
-    ]
-  },
-  { id:'launch', title:'Чеклист запуска', type:'checklist', items:[
-    { id:'l1', label:'Домен зарегистрирован и прописан на хостинг', checked:false },
-    { id:'l2', label:'SSL-сертификат установлен (https://)', checked:false },
-    { id:'l3', label:'WordPress 6.x установлен', checked:false },
-    { id:'l4', label:'Автоматический бэкап настроен', checked:false },
-    { id:'l5', label:'Все тексты заполнены', checked:false },
-    { id:'l6', label:'Фото заказчика в WebP, оптимизировано', checked:false },
-    { id:'l7', label:'Контактные ссылки работают (TG, WA, Email)', checked:false },
-    { id:'l8', label:'Форма обратной связи работает', checked:false },
-    { id:'l9', label:'Google Analytics 4 подключён', checked:false },
-    { id:'l10', label:'Яндекс.Метрика подключена', checked:false },
-    { id:'l11', label:'PageSpeed Desktop 90+, Mobile 85+', checked:false },
-    { id:'l12', label:'Title и Meta Description заполнены', checked:false },
-    { id:'l13', label:'H1 — только один на странице', checked:false },
-    { id:'l14', label:'Alt-теги у всех изображений', checked:false },
-  ]}
-];
-
-let currentMode = 'editor';
-let fieldModalTargetId = null;
-let selectedFieldType = 'text';
-let selectedSectionType = 'fields';
-let sheetsUrl = '';
-
-// ── MODE ─────────────────────────────────────────────────────────
-function setMode(mode) {
-  currentMode = mode;
-  document.body.className = mode + '-mode';
-  document.getElementById('btnEditor').classList.toggle('active', mode==='editor');
-  document.getElementById('btnClient').classList.toggle('active', mode==='client');
-  document.getElementById('modeLabel').textContent = mode==='editor'
-    ? 'Режим редактора — настройте бриф и отправьте заказчику'
-    : 'Режим заказчика — так видит форму ваш клиент';
-  renderMain();
-}
-
-// ── RENDER ────────────────────────────────────────────────────────
-function render() { renderSidebar(); renderMain(); }
-
-function renderSidebar() {
-  document.getElementById('sidebar').innerHTML =
-    '<div class="sidebar-title">Разделы</div>' +
-    sections.map((s,i)=>`<div class="nav-item" onclick="scrollToSection('${s.id}')">
-      <span>${s.title}</span><span class="nav-num">${i+1}</span></div>`).join('');
-}
-
-function renderMain() {
-  const isClient = currentMode === 'client';
-  let html = sections.map((s,i) => renderSection(s,i,isClient)).join('');
-  if (!isClient) {
-    html += `<div class="add-section-area editor-only" onclick="addSection()"><span>＋ Добавить раздел</span></div>`;
+  // ─────────────────────────────────────────────────────────
+  //  КОНФИГУРАЦИЯ: только режим заказчика + фиксированный скрипт
+  // ─────────────────────────────────────────────────────────
+  const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbxayv-tWZWpJ1wjZR5h4mGEGV_zMg05vpkJm1ZiQVZqkbfEhv1_-OGTk1qOrScZT6qWfQ/exec";
+  
+  // ВСЕ ДАННЫЕ БРИФА (секции, поля, чеклисты, таблицы) — полностью сохранены
+  let sections = [
+    { id:'meta', title:'Общая информация', type:'fields', fields:[
+      { id:'f1', label:'Заказчик', type:'text', value:'Алексей Рудынский' },
+      { id:'f2', label:'Проект', type:'text', value:'Лендинг — B2B тренер по продажам и переговорам' },
+      { id:'f3', label:'Тип сайта', type:'radio', value:'Лендинг', options:['Лендинг','Многостраничный','Интернет-магазин','Корпоративный'] },
+      { id:'f4', label:'Аудитория', type:'textarea', value:'Коммерческие директора, РОПы, HR, собственники B2B компаний' },
+      { id:'f5', label:'География', type:'text', value:'Беларусь, СНГ, онлайн' },
+      { id:'f6', label:'Статус проекта', type:'radio', value:'Прототип готов', options:['Идея','ТЗ готово','Прототип готов','Редизайн'] },
+    ]},
+    { id:'platform', title:'Платформа и хостинг', type:'fields', fields:[
+      { id:'p1', label:'CMS', type:'radio', value:'WordPress', options:['WordPress','Tilda','Webflow','Wix','Кастомная'] },
+      { id:'p2', label:'Хостинг', type:'text', value:'Beget / TimeWeb / Hetzner' },
+      { id:'p3', label:'Домен', type:'text', value:'rudynsky.by / rudynsky.com' },
+      { id:'p4', label:'SSL', type:'radio', value:"Да (Let's Encrypt)", options:["Да (Let's Encrypt)",'Да (платный)','Нет'] },
+    ]},
+    { id:'design', title:'Дизайн и стиль', type:'fields', fields:[
+      { id:'d1', label:'Концепция', type:'radio', value:'Тёмный / Industrial', options:['Тёмный / Industrial','Светлый / Минимализм','Корпоративный','Яркий / Стартап'] },
+      { id:'d2', label:'Цвет фона', type:'text', value:'#080808' },
+      { id:'d3', label:'Акцентный цвет', type:'text', value:'#C8A84B (золотой)' },
+      { id:'d4', label:'Шрифт заголовков', type:'text', value:'Bebas Neue' },
+      { id:'d5', label:'Шрифт текста', type:'text', value:'Raleway' },
+      { id:'d6', label:'Анимации', type:'radio', value:'Лёгкие (hover + fadeIn)', options:['Нет','Лёгкие (hover + fadeIn)','Средние','Тяжёлые'] },
+      { id:'d7', label:'Стоковые фото', type:'radio', value:'Нет', options:['Да','Нет','Только иконки'] },
+    ]},
+    { id:'blocks', title:'Структура — блоки сайта', type:'table',
+      columns:['#','Блок','Содержание','Статус'],
+      rows:[
+        ['01','Hero','Заголовок, фото, статистика, 2 кнопки CTA','✅ Готов'],
+        ['02','Proof bar','Строка с отраслями опыта','✅ Готов'],
+        ['03','Для кого','6 отраслей + роли покупателей','✅ Готов'],
+        ['04','Боли клиента','8 карточек проблем отдела','✅ Готов'],
+        ['05','Как работаем','5 шагов процесса + философия','✅ Готов'],
+        ['06','Отличие','Не скрипты — позиция. Сравнение 2 подходов','✅ Готов'],
+        ['07','Программы','5 модулей с описанием и результатами','✅ Готов'],
+        ['08','Форматы','6 форматов работы','✅ Готов'],
+        ['09','Обо мне','Биография, цифры, таймлайн опыта','✅ Готов'],
+        ['10','Видео','Заглушка → потом реальное видео 1-2 мин','⏳ Заглушка'],
+        ['11','Кейсы','3 кейса (ориентировочные цифры)','⏳ Нужны реальные'],
+        ['12','CTA / Контакт','4 кнопки: TG, WA, LinkedIn, Email','✅ Готов (нужны ссылки)'],
+      ]
+    },
+    { id:'tech', title:'Технические требования', type:'fields', fields:[
+      { id:'t1', label:'PageSpeed Desktop', type:'radio', value:'90+', options:['85+','90+','95+'] },
+      { id:'t2', label:'PageSpeed Mobile', type:'radio', value:'85+', options:['75+','80+','85+'] },
+      { id:'t3', label:'Время загрузки (1 экран)', type:'text', value:'< 2.5 секунды' },
+      { id:'t4', label:'Мобильная адаптация', type:'radio', value:'Да — обязательно', options:['Да — обязательно','Базовая','Не нужна'] },
+      { id:'t5', label:'Обязательные плагины', type:'textarea', value:'Yoast SEO, Contact Form 7, WP Super Cache, Smush, UpdraftPlus, Wordfence, ACF, Flamingo' },
+    ]},
+    { id:'integrations', title:'Контакты и интеграции', type:'fields', fields:[
+      { id:'i1', label:'Telegram', type:'text', value:'' },
+      { id:'i2', label:'WhatsApp', type:'text', value:'' },
+      { id:'i3', label:'Email для заявок', type:'text', value:'' },
+      { id:'i4', label:'LinkedIn', type:'text', value:'' },
+      { id:'i5', label:'Защита форм', type:'radio', value:'reCAPTCHA v3', options:['reCAPTCHA v3','Cloudflare Turnstile','Нет'] },
+      { id:'i6', label:'Аналитика', type:'checkbox', options:['Google Analytics 4','Яндекс.Метрика','Google Search Console','Hotjar / Clarity'], value:['Google Analytics 4','Яндекс.Метрика','Google Search Console'] },
+    ]},
+    { id:'content', title:'Контент — что готово', type:'checklist', items:[
+      { id:'c1', label:'Фотография заказчика (деловой стиль)', checked:true },
+      { id:'c2', label:'Тексты всех блоков сайта', checked:true },
+      { id:'c3', label:'Структура и описания 5 программ тренингов', checked:true },
+      { id:'c4', label:'Биография и опыт работы', checked:true },
+      { id:'c5', label:'Список отраслей и целевой аудитории', checked:true },
+      { id:'c6', label:'Telegram username', checked:false },
+      { id:'c7', label:'WhatsApp номер (с кодом страны)', checked:false },
+      { id:'c8', label:'Email для приёма заявок', checked:false },
+      { id:'c9', label:'Реальные кейсы с цифрами (хотя бы 1–2)', checked:false },
+      { id:'c10', label:'Отзывы от коллег или компаний', checked:false },
+      { id:'c11', label:'Видео-запись 1–2 минуты', checked:false },
+      { id:'c12', label:'Домен: выбрать и зарегистрировать', checked:false },
+    ]},
+    { id:'seo', title:'SEO', type:'fields', fields:[
+      { id:'s1', label:'Title страницы', type:'text', value:'Алексей Рудынский — Тренер по B2B продажам | Минск' },
+      { id:'s2', label:'Meta description', type:'textarea', value:'' },
+      { id:'s3', label:'Ключевые запросы', type:'textarea', value:'тренинг по продажам Беларусь, B2B тренинги Минск, тренер по переговорам' },
+      { id:'s4', label:'Open Graph', type:'radio', value:'Да', options:['Да','Нет'] },
+    ]},
+    { id:'timeline', title:'Этапы и сроки', type:'table',
+      columns:['#','Этап','Состав работ','Срок'],
+      rows:[
+        ['1','Подготовка','Хостинг, домен, установка WP, SSL','1–2 дня'],
+        ['2','Тема и структура','Кастомная тема, перенос HTML/CSS, ACF','3–5 дней'],
+        ['3','Контент','Тексты, фото, кастомные поля','2–3 дня'],
+        ['4','Мобильная версия','Адаптация на всех брейкпоинтах','1–2 дня'],
+        ['5','Формы и интеграции','Contact Form 7, reCAPTCHA, мессенджеры','1 день'],
+        ['6','SEO и аналитика','Yoast, GA4, Метрика, Search Console','1 день'],
+        ['7','Оптимизация','PageSpeed, кэш, минификация','1 день'],
+        ['8','Безопасность','Wordfence, UpdraftPlus, wp-admin','0.5 дня'],
+        ['9','Финальная проверка','Кросс-браузер, ссылки, сдача','1 день'],
+      ]
+    },
+    { id:'launch', title:'Чеклист запуска', type:'checklist', items:[
+      { id:'l1', label:'Домен зарегистрирован и прописан на хостинг', checked:false },
+      { id:'l2', label:'SSL-сертификат установлен (https://)', checked:false },
+      { id:'l3', label:'WordPress 6.x установлен', checked:false },
+      { id:'l4', label:'Автоматический бэкап настроен', checked:false },
+      { id:'l5', label:'Все тексты заполнены', checked:false },
+      { id:'l6', label:'Фото заказчика в WebP, оптимизировано', checked:false },
+      { id:'l7', label:'Контактные ссылки работают (TG, WA, Email)', checked:false },
+      { id:'l8', label:'Форма обратной связи работает', checked:false },
+      { id:'l9', label:'Google Analytics 4 подключён', checked:false },
+      { id:'l10', label:'Яндекс.Метрика подключена', checked:false },
+      { id:'l11', label:'PageSpeed Desktop 90+, Mobile 85+', checked:false },
+      { id:'l12', label:'Title и Meta Description заполнены', checked:false },
+      { id:'l13', label:'H1 — только один на странице', checked:false },
+      { id:'l14', label:'Alt-теги у всех изображений', checked:false },
+    ]}
+  ];
+  
+  // ──────────────── HELPER FUNCTIONS ─────────────────────
+  function esc(str) { return String(str || '').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'); }
+  function findSection(sid) { return sections.find(s => s.id === sid); }
+  function findField(sid, fid) { return findSection(sid).fields.find(f => f.id === fid); }
+  function findItem(sid, iid) { return findSection(sid).items.find(i => i.id === iid); }
+  
+  // Обновление значений (без сохранения через локальное хранилище — только в памяти)
+  function updateFieldValue(sid, fid, val) { let f = findField(sid,fid); if(f) f.value = val; renderMain(); }
+  function toggleCbOption(sid, fid, opt, checked) {
+    let f = findField(sid,fid);
+    if(!f) return;
+    if(!f.value) f.value = [];
+    if(checked) { if(!f.value.includes(opt)) f.value.push(opt); }
+    else { f.value = f.value.filter(v => v !== opt); }
+    renderMain();
   }
-  if (isClient) {
-    html += `<div class="submit-area client-only" id="submitArea">
-      <h3>Готово? Отправьте бриф</h3>
-      <p>Все ваши ответы будут отправлены разработчику</p>
+  function toggleCheck(sid, iid, val) { let it = findItem(sid,iid); if(it) it.checked = val; renderMain(); }
+  function updateCell(sid, rowIdx, colIdx, val) { let s = findSection(sid); if(s && s.rows[rowIdx]) s.rows[rowIdx][colIdx] = val; renderMain(); }
+  
+  // ──────────────── ОТРИСОВКА ТОЛЬКО ДЛЯ КЛИЕНТА ─────────
+  function renderSidebar() {
+    const sidebar = document.getElementById('sidebar');
+    if(!sidebar) return;
+    sidebar.innerHTML = `<div class="sidebar-title">📋 РАЗДЕЛЫ БРИФА</div>` +
+      sections.map((s,i) => `<div class="nav-item" onclick="scrollToSection('${s.id}')">
+        <span>${esc(s.title)}</span><span class="nav-num">${i+1}</span></div>`).join('');
+  }
+  
+  function renderMain() {
+    const main = document.getElementById('main');
+    if(!main) return;
+    let html = sections.map((s,idx) => renderSection(s, idx)).join('');
+    // ВСЕГДА показываем форму отправки для клиента
+    html += `<div class="submit-area" id="submitArea">
+      <h3>📨 Завершить и отправить</h3>
+      <p>Проверьте ответы — они будут переданы разработчику</p>
       <div class="client-name-row">
-        <input id="clientName" placeholder="Ваше имя (необязательно)">
+        <input type="text" id="clientName" placeholder="Ваше имя (компания) — необязательно">
       </div>
-      <button class="btn btn-green" onclick="submitBrief()">📤 Отправить бриф</button>
-      <div class="sending-state" id="sendingState" style="margin-top:12px;color:var(--muted);font-size:13px">⏳ Отправляем...</div>
+      <button class="btn-green" id="submitBriefBtn">📤 Отправить бриф</button>
+      <div class="sending-state" id="sendingState">⏳ Отправка...</div>
+    </div>`;
+    main.innerHTML = html;
+    
+    // Авто-высота textarea
+    document.querySelectorAll('.td-input, textarea.field-input').forEach(el => autoResize(el));
+    // Вешаем обработчик кнопки отправки
+    const submitBtn = document.getElementById('submitBriefBtn');
+    if(submitBtn) submitBtn.addEventListener('click', submitBrief);
+  }
+  
+  function renderSection(s, idx) {
+    let body = '';
+    if(s.type === 'fields') body = renderFields(s);
+    else if(s.type === 'checklist') body = renderChecklist(s);
+    else if(s.type === 'table') body = renderTable(s);
+    
+    return `<div class="section" id="sec-${s.id}">
+      <div class="section-header">
+        <div class="section-header-left">
+          <div class="section-num">${String(idx+1).padStart(2,'0')}</div>
+          <div class="section-title-static">${esc(s.title)}</div>
+        </div>
+      </div>
+      <div class="section-body">${body}</div>
     </div>`;
   }
-  document.getElementById('main').innerHTML = html;
-  document.querySelectorAll('.td-input').forEach(el => autoResize(el));
-}
-
-function renderSection(s, idx, isClient) {
-  let body = '';
-  if (s.type==='fields') body = renderFields(s, isClient);
-  else if (s.type==='checklist') body = renderChecklist(s, isClient);
-  else if (s.type==='table') body = renderTable(s, isClient);
-
-  const titleEl = isClient
-    ? `<span class="section-title-static">${esc(s.title)}</span>`
-    : `<input class="section-title-input" value="${esc(s.title)}" onchange="updateSectionTitle('${s.id}',this.value)">`;
-
-  const actions = isClient ? '' : `<div class="section-actions editor-only">
-    ${s.type==='fields' ? `<button class="btn btn-outline" style="font-size:11px;padding:4px 9px" onclick="openFieldModal('${s.id}')">+ Поле</button>` : ''}
-    ${s.type==='checklist' ? `<button class="btn btn-outline" style="font-size:11px;padding:4px 9px" onclick="addCheckItem('${s.id}')">+ Пункт</button>` : ''}
-    ${s.type==='table' ? `<button class="btn btn-outline" style="font-size:11px;padding:4px 9px" onclick="addTableRow('${s.id}')">+ Строка</button>` : ''}
-    <button class="btn btn-danger" style="font-size:11px;padding:4px 9px" onclick="removeSection('${s.id}')">✕</button>
-  </div>`;
-
-  return `<div class="section" id="sec-${s.id}">
-    <div class="section-header">
-      <div class="section-header-left">
-        <div class="section-num">${String(idx+1).padStart(2,'0')}</div>
-        ${titleEl}
-      </div>${actions}
-    </div>
-    <div class="section-body">${body}</div>
-  </div>`;
-}
-
-function renderFields(s, isClient) {
-  let html = s.fields.map(f => {
-    let val = '';
-    if (f.type==='text') {
-      val = `<input class="field-input" value="${esc(f.value||'')}" placeholder="Введите значение..."
-        onchange="updateFieldValue('${s.id}','${f.id}',this.value)">`;
-    } else if (f.type==='textarea') {
-      val = `<textarea class="field-input" rows="2" placeholder="Введите текст..."
-        onchange="updateFieldValue('${s.id}','${f.id}',this.value)">${esc(f.value||'')}</textarea>`;
-    } else if (f.type==='radio') {
-      const opts = f.options||[];
-      val = `<div class="radio-group">${opts.map(o=>`
-        <label class="radio-option ${f.value===o?'selected':''}" onclick="updateFieldValue('${s.id}','${f.id}','${esc(o)}');renderMain()">
-          <input type="radio" ${f.value===o?'checked':''}>${esc(o)}</label>`).join('')}
-        ${!isClient?`<button class="btn btn-outline editor-only" style="font-size:10px;padding:3px 7px;border-radius:20px" onclick="addRadioOption('${s.id}','${f.id}')">+ Вариант</button>`:''}
+  
+  function renderFields(s) {
+    return s.fields.map(f => {
+      let inputHtml = '';
+      if(f.type === 'text') {
+        inputHtml = `<input class="field-input" value="${esc(f.value||'')}" placeholder="Введите значение..." onchange="updateFieldValue('${s.id}','${f.id}',this.value)">`;
+      } else if(f.type === 'textarea') {
+        inputHtml = `<textarea class="field-input" rows="2" placeholder="Введите текст..." onchange="updateFieldValue('${s.id}','${f.id}',this.value)">${esc(f.value||'')}</textarea>`;
+      } else if(f.type === 'radio') {
+        const opts = f.options || [];
+        inputHtml = `<div class="radio-group">${opts.map(o => `
+          <label class="radio-option ${f.value === o ? 'selected' : ''}" onclick="updateFieldValue('${s.id}','${f.id}','${esc(o)}');renderMain()">
+            <input type="radio" ${f.value===o ? 'checked' : ''} name="radio_${s.id}_${f.id}"> ${esc(o)}
+          </label>`).join('')}
+        </div>`;
+      } else if(f.type === 'checkbox') {
+        const opts = f.options || [];
+        const vals = f.value || [];
+        inputHtml = `<div class="checkbox-group">${opts.map(o => `
+          <label class="check-row" style="display:flex; gap:8px; cursor:pointer">
+            <input type="checkbox" ${vals.includes(o) ? 'checked' : ''} onchange="toggleCbOption('${s.id}','${f.id}','${esc(o)}',this.checked)">
+            <span class="check-label-static">${esc(o)}</span>
+          </label>`).join('')}
+        </div>`;
+      }
+      return `<div class="field-row">
+        <div class="field-label">${esc(f.label)}</div>
+        <div class="field-value">${inputHtml}</div>
       </div>`;
-    } else if (f.type==='checkbox') {
-      const opts = f.options||[], vals = f.value||[];
-      val = `<div class="checkbox-group">${opts.map(o=>`
-        <label style="display:flex;align-items:center;gap:8px;cursor:pointer">
-          <input type="checkbox" ${vals.includes(o)?'checked':''}
-            onchange="toggleCbOption('${s.id}','${f.id}','${esc(o)}',this.checked)">
-          <span style="font-size:13px">${esc(o)}</span>
-        </label>`).join('')}
-        ${!isClient?`<button class="btn btn-outline editor-only" style="font-size:10px;padding:3px 7px;margin-top:4px" onclick="addCbOption('${s.id}','${f.id}')">+ Вариант</button>`:''}
-      </div>`;
+    }).join('');
+  }
+  
+  function renderChecklist(s) {
+    return `<div class="checkbox-group">` + s.items.map(item => `
+      <div class="check-row">
+        <input type="checkbox" ${item.checked ? 'checked' : ''} onchange="toggleCheck('${s.id}','${item.id}',this.checked)">
+        <span class="check-label-static">${esc(item.label)}</span>
+      </div>`).join('') + `</div>`;
+  }
+  
+  function renderTable(s) {
+    return `<table class="brief-table"><thead><tr>${s.columns.map(c => `<th>${esc(c)}</th>`).join('')}</tr></thead><tbody>
+      ${s.rows.map((row, ri) => `<tr>${row.map((cell, ci) => `
+        <td><textarea class="td-input" rows="1" onchange="updateCell('${s.id}',${ri},${ci},this.value)" oninput="autoResize(this)">${esc(cell)}</textarea></td>`).join('')}
+      </tr>`).join('')}
+    </tbody></table>`;
+  }
+  
+  // ──────────────── СБОР ДАННЫХ И ОТПРАВКА В GOOGLE SCRIPT ─────────
+  function collectData() {
+    const fields = [];
+    sections.forEach(s => {
+      if(s.type === 'fields') {
+        s.fields.forEach(f => {
+          let val = f.value;
+          if(f.type === 'checkbox') val = (f.value || []).join(', ');
+          if(val === undefined || val === null) val = '—';
+          fields.push({ label: s.title + ' / ' + f.label, value: val });
+        });
+      } 
+      else if(s.type === 'checklist') {
+        s.items.forEach(item => {
+          fields.push({ label: s.title + ' / ' + item.label, value: item.checked ? '✅ Да / Готово' : '❌ Нет / Не готово' });
+        });
+      }
+      else if(s.type === 'table') {
+        s.rows.forEach((row, i) => {
+          fields.push({ label: s.title + ' / Строка ' + (i+1), value: row.join(' | ') });
+        });
+      }
+    });
+    return fields;
+  }
+  
+  async function submitBrief() {
+    const clientNameInput = document.getElementById('clientName');
+    const clientName = clientNameInput ? clientNameInput.value.trim() : 'Заказчик';
+    const btn = document.getElementById('submitBriefBtn');
+    const sendingDiv = document.getElementById('sendingState');
+    const submitArea = document.getElementById('submitArea');
+    
+    if(!btn || !sendingDiv) return;
+    btn.style.display = 'none';
+    sendingDiv.style.display = 'block';
+    
+    const payload = {
+      clientName: clientName || 'Аноним',
+      fields: collectData()
+    };
+    
+    try {
+      // Используем режим no-cors для простоты, сервер всё равно примет POST
+      await fetch(GOOGLE_SCRIPT_URL, {
+        method: 'POST',
+        mode: 'no-cors',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload)
+      });
+      // no-cors не позволяет прочитать ответ, но мы показываем успех
+      if(submitArea) {
+        submitArea.innerHTML = `
+          <div class="success-screen" style="display:block; background:transparent; border:none; padding:20px;">
+            <div class="icon">✅</div>
+            <h2>Бриф успешно отправлен!</h2>
+            <p>Спасибо! Разработчик свяжется с вами в ближайшее время.<br>Данные сохранены в Google Sheets.</p>
+          </div>`;
+      }
+      showToast('Бриф отправлен! Разработчик получил данные.');
+    } catch(err) {
+      console.warn(err);
+      btn.style.display = 'block';
+      sendingDiv.style.display = 'none';
+      showToast('⚠️ Ошибка соединения. Проверьте интернет или свяжитесь с разработчиком.');
     }
-    const labelEl = isClient
-      ? `<div class="field-label">${esc(f.label)}</div>`
-      : `<div class="field-label"><input class="field-label-input" value="${esc(f.label)}" onchange="updateFieldLabel('${s.id}','${f.id}',this.value)"></div>`;
-    const removeBtn = isClient ? '' : `<button class="field-remove editor-only" onclick="removeField('${s.id}','${f.id}')">×</button>`;
-    return `<div class="field-row">${labelEl}<div class="field-value">${val}</div>${removeBtn}</div>`;
-  }).join('');
-  if (!isClient) html += `<button class="add-row-btn editor-only" onclick="openFieldModal('${s.id}')">＋ Добавить поле</button>`;
-  return html;
-}
-
-function renderChecklist(s, isClient) {
-  let html = `<div class="checkbox-group">` + s.items.map(item => {
-    const labelEl = isClient
-      ? `<span class="check-label-static">${esc(item.label)}</span>`
-      : `<input class="check-label-input" value="${esc(item.label)}" onchange="updateCheckLabel('${s.id}','${item.id}',this.value)">`;
-    const removeBtn = isClient ? '' : `<button class="field-remove editor-only" onclick="removeCheckItem('${s.id}','${item.id}')">×</button>`;
-    return `<div class="check-row">
-      <input type="checkbox" ${item.checked?'checked':''} onchange="toggleCheck('${s.id}','${item.id}',this.checked)">
-      ${labelEl}${removeBtn}
-    </div>`;
-  }).join('') + `</div>`;
-  if (!isClient) html += `<button class="add-row-btn editor-only" onclick="addCheckItem('${s.id}')">＋ Добавить пункт</button>`;
-  return html;
-}
-
-function renderTable(s, isClient) {
-  let html = `<table class="brief-table"><thead><tr>
-    ${s.columns.map(c=>`<th>${esc(c)}</th>`).join('')}
-    ${!isClient?'<th style="width:32px"></th>':''}
-  </tr></thead><tbody>
-    ${s.rows.map((row,ri)=>`<tr>
-      ${row.map((cell,ci)=>`<td><textarea class="td-input" rows="1"
-        onchange="updateCell('${s.id}',${ri},${ci},this.value)"
-        oninput="autoResize(this)">${esc(cell)}</textarea></td>`).join('')}
-      ${!isClient?`<td><button class="field-remove editor-only" onclick="removeTableRow('${s.id}',${ri})">×</button></td>`:''}
-    </tr>`).join('')}
-  </tbody></table>`;
-  if (!isClient) html += `<button class="add-row-btn editor-only" onclick="addTableRow('${s.id}')">＋ Добавить строку</button>`;
-  return html;
-}
-
-// ── MUTATIONS ────────────────────────────────────────────────────
-function updateSectionTitle(sid,v){find(sid).title=v;renderSidebar();}
-function removeSection(sid){if(!confirm('Удалить раздел?'))return;sections=sections.filter(s=>s.id!==sid);render();}
-function updateFieldLabel(sid,fid,v){findField(sid,fid).label=v;}
-function updateFieldValue(sid,fid,v){findField(sid,fid).value=v;}
-function removeField(sid,fid){const s=find(sid);s.fields=s.fields.filter(f=>f.id!==fid);renderMain();}
-function addRadioOption(sid,fid){const v=prompt('Новый вариант:');if(!v)return;findField(sid,fid).options.push(v);renderMain();}
-function addCbOption(sid,fid){const v=prompt('Новый вариант:');if(!v)return;findField(sid,fid).options.push(v);renderMain();}
-function toggleCbOption(sid,fid,opt,checked){const f=findField(sid,fid);f.value=f.value||[];if(checked){if(!f.value.includes(opt))f.value.push(opt);}else{f.value=f.value.filter(v=>v!==opt);}}
-function toggleCheck(sid,iid,v){findItem(sid,iid).checked=v;}
-function updateCheckLabel(sid,iid,v){findItem(sid,iid).label=v;}
-function removeCheckItem(sid,iid){const s=find(sid);s.items=s.items.filter(i=>i.id!==iid);renderMain();}
-function addCheckItem(sid){find(sid).items.push({id:uid(),label:'Новый пункт',checked:false});renderMain();}
-function updateCell(sid,ri,ci,v){find(sid).rows[ri][ci]=v;}
-function removeTableRow(sid,ri){find(sid).rows.splice(ri,1);renderMain();}
-function addTableRow(sid){const s=find(sid);s.rows.push(s.columns.map(()=>''));renderMain();}
-
-// ── SUBMIT TO GOOGLE SHEETS ──────────────────────────────────────
-function collectData() {
-  const fields = [];
-  sections.forEach(s => {
-    if (s.type==='fields') s.fields.forEach(f => {
-      let val = f.value;
-      if (f.type==='checkbox') val = (f.value||[]).join(', ');
-      fields.push({ label: s.title + ' / ' + f.label, value: val||'—' });
-    });
-    else if (s.type==='checklist') s.items.forEach(item => {
-      fields.push({ label: s.title + ' / ' + item.label, value: item.checked ? '✅' : '☐' });
-    });
-    else if (s.type==='table') s.rows.forEach((row,i) => {
-      fields.push({ label: s.title + ' / Строка ' + (i+1), value: row.join(' | ') });
+  }
+  
+  // ──────────────── ВСПОМОГАТЕЛЬНЫЕ UI ──────────────────
+  function autoResize(el) {
+    if(!el) return;
+    el.style.height = 'auto';
+    el.style.height = (el.scrollHeight) + 'px';
+  }
+  
+  function scrollToSection(sid) {
+    const el = document.getElementById('sec-'+sid);
+    if(el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }
+  
+  function showToast(msg) {
+    const t = document.getElementById('toast');
+    t.textContent = msg;
+    t.classList.add('show');
+    setTimeout(() => t.classList.remove('show'), 3000);
+  }
+  
+  // Обновляем UI при любом изменении (триггер из радио, чекбоксов)
+  window.updateFieldValue = updateFieldValue;
+  window.toggleCbOption = toggleCbOption;
+  window.toggleCheck = toggleCheck;
+  window.updateCell = updateCell;
+  window.scrollToSection = scrollToSection;
+  window.autoResize = autoResize;
+  
+  // Инициализация
+  window.addEventListener('DOMContentLoaded', () => {
+    renderSidebar();
+    renderMain();
+    // Добавляем подгрузку стилей для динамических textarea
+    document.addEventListener('input', (e) => {
+      if(e.target.classList && e.target.classList.contains('td-input')) autoResize(e.target);
+      if(e.target.classList && e.target.classList.contains('field-input') && e.target.tagName === 'TEXTAREA') autoResize(e.target);
     });
   });
-  return fields;
-}
-
-async function submitBrief() {
-  const url = sheetsUrl || document.getElementById('sheetsUrl')?.value;
-  if (!url) {
-    showToast('⚠️ Укажите URL Google Apps Script в настройках');
-    setMode('editor');
-    return;
-  }
-  const clientName = document.getElementById('clientName')?.value || 'Заказчик';
-  const btn = document.querySelector('.btn-green');
-  const sending = document.getElementById('sendingState');
-  btn.style.display='none'; sending.style.display='block';
-
-  const payload = { clientName, fields: collectData() };
-  try {
-    await fetch(url, {
-      method:'POST', mode:'no-cors',
-      headers:{'Content-Type':'application/json'},
-      body: JSON.stringify(payload)
-    });
-    // no-cors → response opaque, assume success
-    document.getElementById('submitArea').innerHTML = `
-      <div style="padding:40px 20px;text-align:center">
-        <div style="font-size:52px;margin-bottom:14px">✅</div>
-        <h2 style="font-size:20px;color:var(--gold);margin-bottom:8px">Бриф отправлен!</h2>
-        <p style="color:var(--muted);font-size:13px">Данные записаны в Google Sheets.<br>Разработчик свяжется с вами в ближайшее время.</p>
-      </div>`;
-  } catch(err) {
-    btn.style.display=''; sending.style.display='none';
-    showToast('Ошибка отправки. Проверьте URL скрипта.');
-  }
-}
-
-// ── SHEETS URL ───────────────────────────────────────────────────
-function saveSheetsUrl() {
-  sheetsUrl = document.getElementById('sheetsUrl').value.trim();
-  localStorage.setItem('briefSheetsUrl', sheetsUrl);
-}
-function testConnection() {
-  const url = document.getElementById('sheetsUrl').value.trim();
-  const st = document.getElementById('urlStatus');
-  if (!url) { st.textContent='Введите URL'; st.style.color='var(--danger)'; return; }
-  st.textContent='⏳ Проверяем...'; st.style.color='var(--muted)';
-  fetch(url, {method:'POST',mode:'no-cors',headers:{'Content-Type':'application/json'},body:JSON.stringify({test:true,fields:[]})})
-    .then(()=>{ st.textContent='✅ Соединение установлено — скрипт отвечает'; st.style.color='var(--green)'; showToast('Готово! Скачайте бриф'); })
-    .catch(()=>{ st.textContent='❌ Не удалось подключиться. Проверьте URL и настройки развёртывания'; st.style.color='var(--danger)'; });
-}
-
-// ── EXPORT ────────────────────────────────────────────────────────
-function saveAndShare() {
-  const blob = new Blob([document.documentElement.outerHTML],{type:'text/html'});
-  const a = document.createElement('a');
-  a.href = URL.createObjectURL(blob);
-  a.download = 'brief_rudynsky.html';
-  a.click();
-  showToast('📁 Файл скачан — отправьте заказчику');
-}
-
-function copyScript() {
-  navigator.clipboard.writeText(document.getElementById('appsScriptCode').textContent);
-  showToast('Код скопирован!');
-}
-
-// ── FIELD MODAL ───────────────────────────────────────────────────
-function openFieldModal(sid) {
-  fieldModalTargetId = sid; selectedFieldType='text';
-  document.getElementById('newFieldLabel').value='';
-  document.getElementById('radioOptions').value='';
-  document.getElementById('radioOptionsArea').style.display='none';
-  document.querySelectorAll('#fieldTypeGrid .type-card').forEach(c=>c.classList.toggle('selected',c.dataset.type==='text'));
-  document.getElementById('fieldModal').classList.add('open');
-}
-function closeFieldModal(){document.getElementById('fieldModal').classList.remove('open');}
-function selectType(card){
-  document.querySelectorAll('#fieldTypeGrid .type-card').forEach(c=>c.classList.remove('selected'));
-  card.classList.add('selected'); selectedFieldType=card.dataset.type;
-  document.getElementById('radioOptionsArea').style.display=selectedFieldType==='radio'?'block':'none';
-}
-function confirmAddField(){
-  const label=document.getElementById('newFieldLabel').value.trim();
-  if(!label){alert('Введите название поля');return;}
-  const s=find(fieldModalTargetId);
-  const f={id:uid(),label,type:selectedFieldType,value:''};
-  if(selectedFieldType==='radio'){f.options=document.getElementById('radioOptions').value.split(',').map(x=>x.trim()).filter(Boolean);if(!f.options.length)f.options=['Вариант 1','Вариант 2'];}
-  if(selectedFieldType==='checkbox'){f.options=['Опция 1','Опция 2'];f.value=[];}
-  s.fields.push(f);closeFieldModal();renderMain();showToast('Поле добавлено');
-}
-
-// ── SECTION MODAL ────────────────────────────────────────────────
-function addSection(){
-  selectedSectionType='fields';
-  document.getElementById('newSectionTitle').value='';
-  document.querySelectorAll('[data-stype]').forEach(c=>c.classList.toggle('selected',c.dataset.stype==='fields'));
-  document.getElementById('sectionModal').classList.add('open');
-}
-function closeSectionModal(){document.getElementById('sectionModal').classList.remove('open');}
-function selectSType(card){document.querySelectorAll('[data-stype]').forEach(c=>c.classList.remove('selected'));card.classList.add('selected');selectedSectionType=card.dataset.stype;}
-function confirmAddSection(){
-  const title=document.getElementById('newSectionTitle').value.trim();
-  if(!title){alert('Введите название');return;}
-  const s={id:uid(),title,type:selectedSectionType};
-  if(selectedSectionType==='fields')s.fields=[];
-  else if(selectedSectionType==='checklist')s.items=[];
-  else{s.columns=['Столбец 1','Столбец 2'];s.rows=[];}
-  sections.push(s);closeSectionModal();render();showToast('Раздел создан');
-  setTimeout(()=>scrollToSection(s.id),100);
-}
-
-// ── HELPERS ───────────────────────────────────────────────────────
-function find(sid){return sections.find(s=>s.id===sid);}
-function findField(sid,fid){return find(sid).fields.find(f=>f.id===fid);}
-function findItem(sid,iid){return find(sid).items.find(i=>i.id===iid);}
-function uid(){return Math.random().toString(36).slice(2,8);}
-function esc(s){return String(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');}
-function scrollToSection(sid){document.getElementById('sec-'+sid)?.scrollIntoView({behavior:'smooth',block:'start'});}
-function autoResize(el){el.style.height='auto';el.style.height=el.scrollHeight+'px';}
-function showToast(msg){const t=document.getElementById('toast');t.textContent=msg;t.classList.add('show');setTimeout(()=>t.classList.remove('show'),2800);}
-
-// Load saved URL
-window.addEventListener('DOMContentLoaded',()=>{
-  const saved=localStorage.getItem('briefSheetsUrl');
-  if(saved){sheetsUrl=saved;const el=document.getElementById('sheetsUrl');if(el)el.value=saved;}
-});
-
-document.querySelectorAll('.modal-overlay').forEach(el=>el.addEventListener('click',e=>{if(e.target===el)el.classList.remove('open');}));
-
-render();
 </script>
 </body>
 </html>
-
