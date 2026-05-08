@@ -20,7 +20,6 @@
     line-height: 1.6; 
   }
 
-  /* HEADER — упрощённый, только для клиента */
   .header { 
     background: var(--bg2); 
     border-bottom: 1px solid var(--gold); 
@@ -38,7 +37,6 @@
   .header-left h1 span { color: var(--gold); }
   .header-left p { font-size: 11px; color: var(--muted); margin-top: 2px; }
   
-  /* LAYOUT */
   .layout { display: flex; min-height: calc(100vh - 80px); }
   .sidebar { 
     width: 240px; 
@@ -76,45 +74,73 @@
 
   .main { flex: 1; padding: 24px 32px; max-width: 860px; }
 
-  /* SECTION */
   .section { background: var(--bg2); border: 1px solid var(--border); border-radius: 10px; margin-bottom: 22px; overflow: hidden; }
   .section-header { display: flex; align-items: center; justify-content: space-between; padding: 15px 20px; background: var(--bg3); border-bottom: 1px solid var(--border); }
   .section-header-left { display: flex; align-items: center; gap: 12px; }
   .section-num { background: var(--gold); color: #080808; font-weight: 800; font-size: 11px; padding: 3px 8px; border-radius: 4px; min-width: 32px; text-align: center; }
   .section-title-static { font-size: 15px; font-weight: 700; color: var(--text); letter-spacing: -0.2px; }
   
-  /* FIELDS */
   .section-body { padding: 20px; }
   .field-row { display: flex; align-items: flex-start; gap: 16px; padding: 10px 0; border-bottom: 1px solid rgba(255,255,255,.04); }
   .field-row:last-of-type { border-bottom: none; }
-  .field-label { min-width: 200px; color: var(--gold); font-size: 13px; font-weight: 500; padding-top: 6px; }
+  .field-label { min-width: 200px; color: var(--gold); font-size: 13px; font-weight: 500; padding-top: 6px; display: flex; align-items: center; gap: 6px; }
   .field-value { flex: 1; }
-  .field-input { background: rgba(255,255,255,.04); border: 1px solid var(--border); outline: none; color: var(--text); font-size: 13px; padding: 8px 12px; border-radius: 8px; width: 100%; font-family: inherit; transition: all .15s; }
-  .field-input:focus { border-color: var(--gold); background: rgba(200,168,75,.05); }
+  .field-input, .custom-input { background: rgba(255,255,255,.04); border: 1px solid var(--border); outline: none; color: var(--text); font-size: 13px; padding: 8px 12px; border-radius: 8px; width: 100%; font-family: inherit; transition: all .15s; }
+  .field-input:focus, .custom-input:focus { border-color: var(--gold); background: rgba(200,168,75,.05); }
   textarea.field-input { resize: vertical; }
   
-  /* RADIO */
   .radio-group { display: flex; flex-wrap: wrap; gap: 10px; }
   .radio-option { display: flex; align-items: center; gap: 6px; background: rgba(255,255,255,.04); border: 1px solid var(--border); padding: 6px 16px; border-radius: 40px; cursor: pointer; transition: all .15s; font-size: 13px; }
   .radio-option:hover { border-color: var(--gold); }
   .radio-option.selected { border-color: var(--gold); background: rgba(200,168,75,.12); color: var(--gold); }
   .radio-option input { display: none; }
 
-  /* CHECKBOX GROUP */
   .checkbox-group { display: flex; flex-direction: column; gap: 10px; }
   .check-row { display: flex; align-items: center; gap: 10px; padding: 6px 0; border-bottom: 1px solid rgba(255,255,255,.03); }
   .check-row:last-child { border-bottom: none; }
   input[type=checkbox] { accent-color: var(--gold); width: 18px; height: 18px; cursor: pointer; flex-shrink: 0; }
   .check-label-static { font-size: 13px; color: var(--text); flex: 1; }
 
-  /* TABLE */
+  /* Подсказки (tooltip) */
+  .help-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    background: rgba(200,168,75,0.2);
+    color: var(--gold);
+    font-size: 10px;
+    font-weight: bold;
+    cursor: help;
+    position: relative;
+  }
+  .help-icon:hover::after {
+    content: attr(data-tip);
+    position: absolute;
+    left: 20px;
+    top: -8px;
+    background: #252525;
+    border: 1px solid var(--gold);
+    color: var(--text);
+    font-size: 11px;
+    font-weight: normal;
+    padding: 6px 10px;
+    border-radius: 8px;
+    white-space: normal;
+    width: 220px;
+    z-index: 1000;
+    box-shadow: 0 2px 8px black;
+    pointer-events: none;
+  }
+
   .brief-table { width: 100%; border-collapse: collapse; margin: 8px 0; }
   .brief-table th, .brief-table td { padding: 10px 12px; border: 1px solid var(--border); font-size: 12px; vertical-align: top; }
   .brief-table th { background: var(--bg3); color: var(--gold); font-weight: 600; font-size: 12px; letter-spacing: .04em; }
   .td-input { background: transparent; border: none; outline: none; color: var(--text); font-size: 12px; width: 100%; font-family: inherit; resize: vertical; padding: 4px; }
   .td-input:focus { background: rgba(200,168,75,.04); border-radius: 4px; }
 
-  /* SUBMIT AREA */
   .submit-area { background: var(--bg2); border: 1px solid var(--border); border-radius: 14px; padding: 32px; text-align: center; margin-bottom: 24px; }
   .submit-area h3 { font-size: 18px; margin-bottom: 8px; color: var(--gold); }
   .submit-area p { color: var(--muted); font-size: 13px; margin-bottom: 24px; }
@@ -125,32 +151,22 @@
   .btn-green:hover { background: #5fce92; transform: scale(1.01); }
   .sending-state { display: none; margin-top: 16px; color: var(--muted); font-size: 13px; }
   
-  /* SUCCESS SCREEN */
   .success-screen { display: none; text-align: center; padding: 60px 40px; background: var(--bg2); border-radius: 20px; border: 1px solid var(--gold); }
   .success-screen .icon { font-size: 64px; margin-bottom: 20px; }
   .success-screen h2 { font-size: 24px; color: var(--gold); margin-bottom: 12px; }
   .success-screen p { color: var(--muted); font-size: 14px; }
   
-  /* TOAST */
   .toast { position: fixed; bottom: 24px; right: 24px; background: var(--bg3); border: 1px solid var(--gold); color: var(--text); padding: 12px 20px; border-radius: 40px; font-size: 13px; opacity: 0; transition: opacity .3s; z-index: 300; pointer-events: none; }
   .toast.show { opacity: 1; }
   
-  /* Скрываем любые редакторские элементы */
   .editor-only { display: none !important; }
   body { --mode-client: true; }
   button, .btn { font-family: inherit; }
-
-  /* дополнительный стиль для условного блока SEO */
-  .seo-conditional {
-    margin-top: 12px;
-    padding-left: 16px;
-    border-left: 2px solid var(--gold);
-  }
+  .conditional-field { margin-top: 8px; margin-left: 16px; }
 </style>
 </head>
 <body>
 
-<!-- Упрощённый хедер — без переключения режимов, без кнопок редактора -->
 <div class="header">
   <div class="header-left">
     <h1>БРИФ · <span>Алексей Рудынский</span></h1>
@@ -159,23 +175,14 @@
 </div>
 
 <div class="layout">
-  <!-- SIDEBAR (навигация) -->
   <div class="sidebar" id="sidebar"></div>
-
-  <!-- MAIN контент (динамический) -->
   <div class="main" id="main"></div>
 </div>
-
-<!-- TOAST уведомления -->
 <div class="toast" id="toast"></div>
 
 <script>
-  // ─────────────────────────────────────────────────────────
-  //  КОНФИГУРАЦИЯ: только режим заказчика + фиксированный скрипт
-  // ─────────────────────────────────────────────────────────
   const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbxayv-tWZWpJ1wjZR5h4mGEGV_zMg05vpkJm1ZiQVZqkbfEhv1_-OGTk1qOrScZT6qWfQ/exec";
   
-  // ВСЕ ДАННЫЕ БРИФА (секции, поля, чеклисты, таблицы) — с изменениями в hosting и seo
   let sections = [
     { id:'meta', title:'Общая информация', type:'fields', fields:[
       { id:'f1', label:'Заказчик', type:'text', value:'Алексей Рудынский' },
@@ -185,14 +192,16 @@
       { id:'f5', label:'География', type:'text', value:'Беларусь, СНГ, онлайн' },
       { id:'f6', label:'Статус проекта', type:'radio', value:'Прототип готов', options:['Идея','ТЗ готово','Прототип готов','Редизайн'] },
     ]},
-    // ---------- РАСШИРЕННЫЙ БЛОК ПЛАТФОРМА И ХОСТИНГ + ДОМЕНЫ ----------
+    // ---------------- РАСШИРЕННЫЙ БЛОК ХОСТИНГ И ДОМЕНЫ ----------------
     { id:'platform', title:'Платформа, хостинг и домены', type:'fields', fields:[
       { id:'p1', label:'CMS', type:'radio', value:'WordPress', options:['WordPress','Tilda','Webflow','Wix','Кастомная'] },
       { id:'p2', label:'Желаемый хостинг', type:'radio', value:'ActiveCloud (Беларусь)', options:[
         'ActiveCloud (Беларусь)', 'Hosting.by (Беларусь)', 'Seredrix (Беларусь)', 'beHost (Беларусь)',
         'Reg.ru (Россия)', 'TimeWeb (Россия)', 'Beget (РФ)', 'Зарубежный (AWS, Hetzner)', 'Помогите выбрать'
       ] },
-      { id:'p3', label:'Домен (какой планируете)', type:'radio', value:'.by', options:['.by', '.ru', '.com', 'пока не выбран'] },
+      { id:'p3', label:'Домен (какой планируете)', type:'domain_select', 
+        value: '.by', customValue: '', needBoth: false, helpSelect: false,
+        options: ['.by', '.ru', '.com', 'Нужны оба .by и .ru', 'Свой вариант'] },
       { id:'p4', label:'SSL', type:'radio', value:"Да (Let's Encrypt)", options:["Да (Let's Encrypt)",'Да (платный)','Нет'] },
     ]},
     { id:'design', title:'Дизайн и стиль', type:'fields', fields:[
@@ -236,6 +245,17 @@
       { id:'i5', label:'Защита форм', type:'radio', value:'reCAPTCHA v3', options:['reCAPTCHA v3','Cloudflare Turnstile','Нет'] },
       { id:'i6', label:'Аналитика', type:'checkbox', options:['Google Analytics 4','Яндекс.Метрика','Google Search Console','Hotjar / Clarity'], value:['Google Analytics 4','Яндекс.Метрика','Google Search Console'] },
     ]},
+    // ----- НОВЫЙ РАЗДЕЛ ПЕРСОНАЛЬНЫЕ ДАННЫЕ И СОГЛАШЕНИЯ -----
+    { id:'privacy', title:'🔒 Персональные данные и соглашения', type:'fields', fields:[
+      { id:'pr1', label:'Размещение серверов', type:'radio', value:'В Беларуси', options:['В Беларуси','В России','В Беларуси и России (соответствие законам)','Не принципиально'], 
+        tip:'Для российских пользователей требуется локализация персональных данных в РФ (152-ФЗ). Для белорусских — рекомендуется в РБ.' },
+      { id:'pr2', label:'Политика конфиденциальности', type:'radio', value:'Будет подготовлена', options:['Уже есть', 'Будет подготовлена', 'Нужна помощь юриста'], 
+        tip:'На сайте обязательно должна быть страница с политикой обработки персональных данных.' },
+      { id:'pr3', label:'Согласие на обработку ПДн', type:'radio', value:'Да, добавим чекбокс во все формы', options:['Да, добавим чекбокс во все формы', 'Нет, не нужно', 'Пока не решили'],
+        tip:'По закону требуется явное согласие пользователя на обработку персональных данных (галочка под формой).' },
+      { id:'pr4', label:'Согласие на cookie', type:'radio', value:'Да, уведомление (баннер)', options:['Да, уведомление (баннер)', 'Нет'], 
+        tip:'В ЕС и многих странах требуется информирование об использовании cookie.' },
+    ]},
     { id:'content', title:'Контент — что готово', type:'checklist', items:[
       { id:'c1', label:'Фотография заказчика (деловой стиль)', checked:true },
       { id:'c2', label:'Тексты всех блоков сайта', checked:true },
@@ -250,18 +270,16 @@
       { id:'c11', label:'Видео-запись 1–2 минуты', checked:false },
       { id:'c12', label:'Домен: выбрать и зарегистрировать', checked:false },
     ]},
-    // ---------- НОВЫЙ БЛОК SEO С ВЫБОРОМ И ЧЕКБОКСАМИ ----------
     { id:'seo', title:'SEO (поисковая оптимизация)', type:'conditional_seo',
       seo_choice: { id:'seo_choice', label:'Делаем базовую техническую SEO-оптимизацию?', value:'Да', options:['Да', 'Нет'] },
       seo_items: [
         { id:'seo1', label:'Настройка метатегов (Title, Description)', checked:true },
         { id:'seo2', label:'Настройка robots.txt и sitemap.xml', checked:true },
-        { id:'seo3', label:'Семантическая разметка Schema.org (для организации, статей)', checked:true },
+        { id:'seo3', label:'Семантическая разметка Schema.org', checked:true },
         { id:'seo4', label:'Open Graph метатеги (для соцсетей)', checked:true },
-        { id:'seo5', label:'Добавление сайта в Google Search Console', checked:true },
-        { id:'seo6', label:'Добавление сайта в Яндекс.Вебмастер', checked:true },
-        { id:'seo7', label:'Базовый аудит скорости и оптимизация (PageSpeed)', checked:true },
-        { id:'seo8', label:'Проверка индексации и устранение дублей', checked:false }
+        { id:'seo5', label:'Добавление в Google Search Console', checked:true },
+        { id:'seo6', label:'Добавление в Яндекс.Вебмастер', checked:true },
+        { id:'seo7', label:'Базовый аудит скорости (PageSpeed)', checked:true }
       ]
     },
     { id:'timeline', title:'Этапы и сроки', type:'table',
@@ -296,13 +314,13 @@
     ]}
   ];
   
-  // ──────────────── HELPER FUNCTIONS ─────────────────────
-  function esc(str) { return String(str || '').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'); }
+  // ---------- Вспомогательные функции ----------
+  function esc(str) { return String(str || '').replace(/[&<>]/g, function(m){ if(m==='&') return '&amp;'; if(m==='<') return '&lt;'; if(m==='>') return '&gt;'; return m;}); }
   function findSection(sid) { return sections.find(s => s.id === sid); }
-  function findField(sid, fid) { return findSection(sid).fields.find(f => f.id === fid); }
-  function findItem(sid, iid) { return findSection(sid).items.find(i => i.id === iid); }
+  function findField(sid, fid) { let s = findSection(sid); return s && s.fields ? s.fields.find(f => f.id === fid) : null; }
+  function findItem(sid, iid) { let s = findSection(sid); return s && s.items ? s.items.find(i => i.id === iid) : null; }
   
-  // Обновление значений (стандартное)
+  // Стандартные обновления
   function updateFieldValue(sid, fid, val) { let f = findField(sid,fid); if(f) f.value = val; renderMain(); }
   function toggleCbOption(sid, fid, opt, checked) {
     let f = findField(sid,fid);
@@ -313,9 +331,38 @@
     renderMain();
   }
   function toggleCheck(sid, iid, val) { let it = findItem(sid,iid); if(it) it.checked = val; renderMain(); }
-  function updateCell(sid, rowIdx, colIdx, val) { let s = findSection(sid); if(s && s.rows[rowIdx]) s.rows[rowIdx][colIdx] = val; renderMain(); }
+  function updateCell(sid, rowIdx, colIdx, val) { let s = findSection(sid); if(s && s.rows && s.rows[rowIdx]) s.rows[rowIdx][colIdx] = val; renderMain(); }
   
-  // Специальные функции для условного SEO-раздела
+  // Для домена: специальная логика
+  function updateDomainChoice(val) {
+    let platform = findSection('platform');
+    let domainField = platform.fields.find(f => f.id === 'p3');
+    if(domainField) {
+      domainField.value = val;
+      if(val !== 'Свой вариант') domainField.customValue = '';
+      renderMain();
+    }
+  }
+  function updateDomainCustom(val) {
+    let platform = findSection('platform');
+    let domainField = platform.fields.find(f => f.id === 'p3');
+    if(domainField) domainField.customValue = val;
+    renderMain();
+  }
+  function updateDomainBoth(checked) {
+    let platform = findSection('platform');
+    let domainField = platform.fields.find(f => f.id === 'p3');
+    if(domainField) domainField.needBoth = checked;
+    renderMain();
+  }
+  function updateDomainHelp(checked) {
+    let platform = findSection('platform');
+    let domainField = platform.fields.find(f => f.id === 'p3');
+    if(domainField) domainField.helpSelect = checked;
+    renderMain();
+  }
+  
+  // SEO условное
   function updateSeoChoice(val) {
     let seoSection = sections.find(s => s.id === 'seo');
     if(seoSection && seoSection.seo_choice) {
@@ -328,47 +375,37 @@
     if(seoSection && seoSection.seo_items) {
       let item = seoSection.seo_items.find(i => i.id === itemId);
       if(item) item.checked = checked;
-      // не перерисовываем, только сохраняем состояние, т.к. рендер всё равно вызовется из onclick
       renderMain();
     }
   }
   
-  // ──────────────── ОТРИСОВКА ТОЛЬКО ДЛЯ КЛИЕНТА ─────────
+  // ---------- Отрисовка ----------
   function renderSidebar() {
     const sidebar = document.getElementById('sidebar');
     if(!sidebar) return;
     sidebar.innerHTML = `<div class="sidebar-title">📋 РАЗДЕЛЫ БРИФА</div>` +
-      sections.map((s,i) => `<div class="nav-item" onclick="scrollToSection('${s.id}')">
-        <span>${esc(s.title)}</span><span class="nav-num">${i+1}</span></div>`).join('');
+      sections.map((s,i) => `<div class="nav-item" onclick="scrollToSection('${s.id}')"><span>${esc(s.title)}</span><span class="nav-num">${i+1}</span></div>`).join('');
   }
   
   function renderMain() {
     const main = document.getElementById('main');
     if(!main) return;
     let html = '';
-    for(let idx = 0; idx < sections.length; idx++) {
-      const s = sections[idx];
-      if(s.type === 'conditional_seo') {
-        html += renderConditionalSeo(s, idx);
-      } else {
-        html += renderSection(s, idx);
-      }
+    for(let i=0; i<sections.length; i++) {
+      const s = sections[i];
+      if(s.type === 'conditional_seo') html += renderConditionalSeo(s, i);
+      else if(s.id === 'platform') html += renderPlatformSection(s, i);
+      else html += renderSection(s, i);
     }
-    // Форма отправки
     html += `<div class="submit-area" id="submitArea">
       <h3>📨 Завершить и отправить</h3>
       <p>Проверьте ответы — они будут переданы разработчику</p>
-      <div class="client-name-row">
-        <input type="text" id="clientName" placeholder="Ваше имя (компания) — необязательно">
-      </div>
+      <div class="client-name-row"><input type="text" id="clientName" placeholder="Ваше имя (компания) — необязательно"></div>
       <button class="btn-green" id="submitBriefBtn">📤 Отправить бриф</button>
       <div class="sending-state" id="sendingState">⏳ Отправка...</div>
     </div>`;
     main.innerHTML = html;
-    
-    // Авто-высота textarea
     document.querySelectorAll('.td-input, textarea.field-input').forEach(el => autoResize(el));
-    // Вешаем обработчик кнопки отправки
     const submitBtn = document.getElementById('submitBriefBtn');
     if(submitBtn) submitBtn.addEventListener('click', submitBrief);
   }
@@ -378,14 +415,8 @@
     if(s.type === 'fields') body = renderFields(s);
     else if(s.type === 'checklist') body = renderChecklist(s);
     else if(s.type === 'table') body = renderTable(s);
-    
     return `<div class="section" id="sec-${s.id}">
-      <div class="section-header">
-        <div class="section-header-left">
-          <div class="section-num">${String(idx+1).padStart(2,'0')}</div>
-          <div class="section-title-static">${esc(s.title)}</div>
-        </div>
-      </div>
+      <div class="section-header"><div class="section-header-left"><div class="section-num">${idx+1}</div><div class="section-title-static">${esc(s.title)}</div></div></div>
       <div class="section-body">${body}</div>
     </div>`;
   }
@@ -394,94 +425,101 @@
     return s.fields.map(f => {
       let inputHtml = '';
       if(f.type === 'text') {
-        inputHtml = `<input class="field-input" value="${esc(f.value||'')}" placeholder="Введите значение..." onchange="updateFieldValue('${s.id}','${f.id}',this.value)">`;
+        inputHtml = `<input class="field-input" value="${esc(f.value||'')}" onchange="updateFieldValue('${s.id}','${f.id}',this.value)">`;
       } else if(f.type === 'textarea') {
-        inputHtml = `<textarea class="field-input" rows="2" placeholder="Введите текст..." onchange="updateFieldValue('${s.id}','${f.id}',this.value)">${esc(f.value||'')}</textarea>`;
+        inputHtml = `<textarea class="field-input" rows="2" onchange="updateFieldValue('${s.id}','${f.id}',this.value)">${esc(f.value||'')}</textarea>`;
       } else if(f.type === 'radio') {
         const opts = f.options || [];
         inputHtml = `<div class="radio-group">${opts.map(o => `
           <label class="radio-option ${f.value === o ? 'selected' : ''}" onclick="updateFieldValue('${s.id}','${f.id}','${esc(o)}');renderMain()">
-            <input type="radio" ${f.value===o ? 'checked' : ''} name="radio_${s.id}_${f.id}"> ${esc(o)}
-          </label>`).join('')}
-        </div>`;
+            <input type="radio" ${f.value===o ? 'checked' : ''}> ${esc(o)}
+          </label>`).join('')}</div>`;
       } else if(f.type === 'checkbox') {
         const opts = f.options || [];
         const vals = f.value || [];
         inputHtml = `<div class="checkbox-group">${opts.map(o => `
-          <label class="check-row" style="display:flex; gap:8px; cursor:pointer">
-            <input type="checkbox" ${vals.includes(o) ? 'checked' : ''} onchange="toggleCbOption('${s.id}','${f.id}','${esc(o)}',this.checked)">
-            <span class="check-label-static">${esc(o)}</span>
-          </label>`).join('')}
-        </div>`;
+          <label class="check-row"><input type="checkbox" ${vals.includes(o) ? 'checked' : ''} onchange="toggleCbOption('${s.id}','${f.id}','${esc(o)}',this.checked)"><span>${esc(o)}</span></label>
+        `).join('')}</div>`;
       }
-      return `<div class="field-row">
-        <div class="field-label">${esc(f.label)}</div>
-        <div class="field-value">${inputHtml}</div>
-      </div>`;
+      const tipHtml = f.tip ? `<span class="help-icon" data-tip="${esc(f.tip)}">ⓘ</span>` : '';
+      return `<div class="field-row"><div class="field-label">${esc(f.label)}${tipHtml}</div><div class="field-value">${inputHtml}</div></div>`;
     }).join('');
   }
   
+  function renderPlatformSection(s, idx) {
+    // Специальный рендер для секции platform с кастомным полем домена
+    let fieldsHtml = '';
+    for(let f of s.fields) {
+      if(f.id === 'p3') {
+        // особое поле выбора домена
+        const domainOpts = f.options;
+        let radioGroup = `<div class="radio-group">${domainOpts.map(opt => `
+          <label class="radio-option ${f.value === opt ? 'selected' : ''}" onclick="updateDomainChoice('${esc(opt)}')">
+            <input type="radio" ${f.value === opt ? 'checked' : ''} name="domain_choice"> ${esc(opt)}
+          </label>`).join('')}</div>`;
+        let customInput = '';
+        if(f.value === 'Свой вариант') {
+          customInput = `<div class="conditional-field"><input class="custom-input" type="text" placeholder="Введите желаемый домен (например, my-site.by)" value="${esc(f.customValue||'')}" oninput="updateDomainCustom(this.value)"></div>`;
+        }
+        let bothCheck = '';
+        if(f.value === 'Нужны оба .by и .ru') {
+          bothCheck = `<div class="conditional-field"><label class="check-row"><input type="checkbox" ${f.needBoth ? 'checked' : ''} onchange="updateDomainBoth(this.checked)"> <span>Подобрать свободную пару .by и .ru (одинаковые имена)</span></label></div>`;
+        }
+        let helpCheck = `<div class="conditional-field"><label class="check-row"><input type="checkbox" ${f.helpSelect ? 'checked' : ''} onchange="updateDomainHelp(this.checked)"> <span>Помогите подобрать свободные домены (проверка доступности)</span></label></div>`;
+        fieldsHtml += `<div class="field-row"><div class="field-label">${esc(f.label)}</div><div class="field-value">${radioGroup}${customInput}${bothCheck}${helpCheck}</div></div>`;
+      } else {
+        // Обычное поле
+        let inputHtml = '';
+        if(f.type === 'radio') {
+          inputHtml = `<div class="radio-group">${f.options.map(o => `
+            <label class="radio-option ${f.value === o ? 'selected' : ''}" onclick="updateFieldValue('${s.id}','${f.id}','${esc(o)}');renderMain()">
+              <input type="radio" ${f.value===o ? 'checked' : ''}> ${esc(o)}
+            </label>`).join('')}</div>`;
+        } else if(f.type === 'text') {
+          inputHtml = `<input class="field-input" value="${esc(f.value||'')}" onchange="updateFieldValue('${s.id}','${f.id}',this.value)">`;
+        }
+        fieldsHtml += `<div class="field-row"><div class="field-label">${esc(f.label)}</div><div class="field-value">${inputHtml}</div></div>`;
+      }
+    }
+    return `<div class="section" id="sec-${s.id}">
+      <div class="section-header"><div class="section-header-left"><div class="section-num">${idx+1}</div><div class="section-title-static">${esc(s.title)}</div></div></div>
+      <div class="section-body">${fieldsHtml}</div>
+    </div>`;
+  }
+  
   function renderChecklist(s) {
-    return `<div class="checkbox-group">` + s.items.map(item => `
-      <div class="check-row">
-        <input type="checkbox" ${item.checked ? 'checked' : ''} onchange="toggleCheck('${s.id}','${item.id}',this.checked)">
-        <span class="check-label-static">${esc(item.label)}</span>
-      </div>`).join('') + `</div>`;
+    return `<div class="checkbox-group">${s.items.map(item => `
+      <div class="check-row"><input type="checkbox" ${item.checked ? 'checked' : ''} onchange="toggleCheck('${s.id}','${item.id}',this.checked)"><span>${esc(item.label)}</span></div>
+    `).join('')}</div>`;
   }
   
   function renderTable(s) {
-    return `<table class="brief-table"><thead><tr>${s.columns.map(c => `<th>${esc(c)}</th>`).join('')}</tr></thead><tbody>
-      ${s.rows.map((row, ri) => `<tr>${row.map((cell, ci) => `
-        <td><textarea class="td-input" rows="1" onchange="updateCell('${s.id}',${ri},${ci},this.value)" oninput="autoResize(this)">${esc(cell)}</textarea></td>`).join('')}
-      </tr>`).join('')}
+    return `<table class="brief-table"><thead><tr>${s.columns.map(c=>`<th>${esc(c)}</th>`).join('')}</tr></thead><tbody>
+      ${s.rows.map((row, ri) => `<tr>${row.map((cell, ci) => `<td><textarea class="td-input" rows="1" onchange="updateCell('${s.id}',${ri},${ci},this.value)" oninput="autoResize(this)">${esc(cell)}</textarea></td>`).join('')}</tr>`).join('')}
     </tbody></table>`;
   }
   
-  // Специальный рендер для SEO-раздела с условием
   function renderConditionalSeo(sec, idx) {
     const choice = sec.seo_choice;
     const showItems = (choice.value === 'Да');
     const items = sec.seo_items || [];
-    
-    let choiceHtml = `<div class="field-row">
-      <div class="field-label">${esc(choice.label)}</div>
-      <div class="field-value">
-        <div class="radio-group">${choice.options.map(opt => `
-          <label class="radio-option ${choice.value === opt ? 'selected' : ''}" onclick="updateSeoChoice('${esc(opt)}')">
-            <input type="radio" ${choice.value === opt ? 'checked' : ''} name="seo_choice_radio"> ${esc(opt)}
-          </label>`).join('')}
-        </div>
-      </div>
-    </div>`;
-    
+    let choiceHtml = `<div class="field-row"><div class="field-label">${esc(choice.label)}</div><div class="field-value"><div class="radio-group">${choice.options.map(opt => `
+      <label class="radio-option ${choice.value === opt ? 'selected' : ''}" onclick="updateSeoChoice('${esc(opt)}')">
+        <input type="radio" ${choice.value === opt ? 'checked' : ''}> ${esc(opt)}
+      </label>`).join('')}</div></div></div>`;
     let itemsHtml = '';
     if(showItems) {
-      itemsHtml = `<div class="seo-conditional">
-        <div style="margin-bottom: 8px; font-size: 12px; color: var(--gold);">✅ В базовую техническую SEO входит:</div>
+      itemsHtml = `<div class="seo-conditional" style="margin-top:12px; padding-left:16px; border-left:2px solid var(--gold);">
+        <div style="margin-bottom:8px; font-size:12px; color:var(--gold);">✅ В базовую техническую SEO входит:</div>
         <div class="checkbox-group">${items.map(item => `
-          <label class="check-row">
-            <input type="checkbox" ${item.checked ? 'checked' : ''} onchange="toggleSeoItem('${item.id}', this.checked)">
-            <span class="check-label-static">${esc(item.label)}</span>
-          </label>`).join('')}
-        </div>
-        <div style="margin-top: 10px; font-size: 11px; color: var(--muted); border-top: 1px dashed #333; padding-top: 8px;">
-          ⚠️ Внешнее SEO (размещение статей на других сайтах, закупка ссылок) — отдельная услуга, в этот пакет не входит.
-        </div>
+          <label class="check-row"><input type="checkbox" ${item.checked ? 'checked' : ''} onchange="toggleSeoItem('${item.id}', this.checked)"><span>${esc(item.label)}</span></label>
+        `).join('')}</div>
+        <div style="margin-top:10px; font-size:11px; color:var(--muted);">⚠️ Внешнее SEO (статьи на других сайтах, ссылки) — отдельная услуга.</div>
       </div>`;
     }
-    
-    return `<div class="section" id="sec-${sec.id}">
-      <div class="section-header">
-        <div class="section-header-left">
-          <div class="section-num">${String(idx+1).padStart(2,'0')}</div>
-          <div class="section-title-static">${esc(sec.title)}</div>
-        </div>
-      </div>
-      <div class="section-body">${choiceHtml}${itemsHtml}</div>
-    </div>`;
+    return `<div class="section" id="sec-${sec.id}"><div class="section-header"><div class="section-header-left"><div class="section-num">${idx+1}</div><div class="section-title-static">${esc(sec.title)}</div></div></div><div class="section-body">${choiceHtml}${itemsHtml}</div></div>`;
   }
   
-  // ──────────────── СБОР ДАННЫХ И ОТПРАВКА В GOOGLE SCRIPT ─────────
   function collectData() {
     const fields = [];
     sections.forEach(s => {
@@ -490,26 +528,27 @@
           let val = f.value;
           if(f.type === 'checkbox') val = (f.value || []).join(', ');
           if(val === undefined || val === null) val = '—';
-          fields.push({ label: s.title + ' / ' + f.label, value: val });
+          let label = s.title + ' / ' + f.label;
+          if(f.id === 'p3' && s.id === 'platform') {
+            let extra = '';
+            if(f.value === 'Свой вариант' && f.customValue) extra = ` (свой: ${f.customValue})`;
+            if(f.value === 'Нужны оба .by и .ru' && f.needBoth) extra = ` — нужно подобрать пару одинаковых имён`;
+            if(f.helpSelect) extra += ` + помощь в подборе`;
+            val = f.value + extra;
+          }
+          fields.push({ label, value: val });
         });
       } 
       else if(s.type === 'checklist') {
-        s.items.forEach(item => {
-          fields.push({ label: s.title + ' / ' + item.label, value: item.checked ? '✅ Да / Готово' : '❌ Нет / Не готово' });
-        });
+        s.items.forEach(item => fields.push({ label: s.title + ' / ' + item.label, value: item.checked ? '✅ Да' : '❌ Нет' }));
       }
       else if(s.type === 'table') {
-        s.rows.forEach((row, i) => {
-          fields.push({ label: s.title + ' / Строка ' + (i+1), value: row.join(' | ') });
-        });
+        s.rows.forEach((row, i) => fields.push({ label: s.title + ' / Строка ' + (i+1), value: row.join(' | ') }));
       }
       else if(s.type === 'conditional_seo') {
-        // Добавляем выбор
         fields.push({ label: s.title + ' / ' + s.seo_choice.label, value: s.seo_choice.value });
         if(s.seo_choice.value === 'Да') {
-          s.seo_items.forEach(item => {
-            fields.push({ label: s.title + ' / ' + item.label, value: item.checked ? '✅ Включено' : '❌ Не включено' });
-          });
+          s.seo_items.forEach(item => fields.push({ label: s.title + ' / ' + item.label, value: item.checked ? '✅ Включено' : '❌ Не включено' }));
         }
       }
     });
@@ -517,83 +556,45 @@
   }
   
   async function submitBrief() {
-    const clientNameInput = document.getElementById('clientName');
-    const clientName = clientNameInput ? clientNameInput.value.trim() : 'Заказчик';
+    const clientName = document.getElementById('clientName')?.value.trim() || 'Заказчик';
     const btn = document.getElementById('submitBriefBtn');
-    const sendingDiv = document.getElementById('sendingState');
-    const submitArea = document.getElementById('submitArea');
-    
-    if(!btn || !sendingDiv) return;
+    const sending = document.getElementById('sendingState');
+    const area = document.getElementById('submitArea');
+    if(!btn) return;
     btn.style.display = 'none';
-    sendingDiv.style.display = 'block';
-    
-    const payload = {
-      clientName: clientName || 'Аноним',
-      fields: collectData()
-    };
-    
+    sending.style.display = 'block';
     try {
-      await fetch(GOOGLE_SCRIPT_URL, {
-        method: 'POST',
-        mode: 'no-cors',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(payload)
-      });
-      if(submitArea) {
-        submitArea.innerHTML = `
-          <div class="success-screen" style="display:block; background:transparent; border:none; padding:20px;">
-            <div class="icon">✅</div>
-            <h2>Бриф успешно отправлен!</h2>
-            <p>Спасибо! Разработчик свяжется с вами в ближайшее время.<br>Данные сохранены в Google Sheets.</p>
-          </div>`;
-      }
-      showToast('Бриф отправлен! Разработчик получил данные.');
-    } catch(err) {
-      console.warn(err);
+      await fetch(GOOGLE_SCRIPT_URL, { method:'POST', mode:'no-cors', headers:{'Content-Type':'application/json'}, body: JSON.stringify({ clientName, fields: collectData() }) });
+      if(area) area.innerHTML = `<div class="success-screen" style="display:block;"><div class="icon">✅</div><h2>Бриф отправлен!</h2><p>Спасибо! Разработчик свяжется с вами.</p></div>`;
+      showToast('Бриф отправлен!');
+    } catch(e) {
       btn.style.display = 'block';
-      sendingDiv.style.display = 'none';
-      showToast('⚠️ Ошибка соединения. Проверьте интернет или свяжитесь с разработчиком.');
+      sending.style.display = 'none';
+      showToast('Ошибка отправки. Попробуйте ещё раз.');
     }
   }
   
-  // ──────────────── ВСПОМОГАТЕЛЬНЫЕ UI ──────────────────
-  function autoResize(el) {
-    if(!el) return;
-    el.style.height = 'auto';
-    el.style.height = (el.scrollHeight) + 'px';
-  }
+  function autoResize(el) { if(el) { el.style.height = 'auto'; el.style.height = el.scrollHeight + 'px'; } }
+  function scrollToSection(sid) { document.getElementById('sec-'+sid)?.scrollIntoView({ behavior:'smooth', block:'start' }); }
+  function showToast(msg) { const t = document.getElementById('toast'); t.textContent = msg; t.classList.add('show'); setTimeout(()=>t.classList.remove('show'),3000); }
   
-  function scrollToSection(sid) {
-    const el = document.getElementById('sec-'+sid);
-    if(el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
-  }
-  
-  function showToast(msg) {
-    const t = document.getElementById('toast');
-    t.textContent = msg;
-    t.classList.add('show');
-    setTimeout(() => t.classList.remove('show'), 3000);
-  }
-  
-  // Обновляем UI при любом изменении (триггер из радио, чекбоксов)
   window.updateFieldValue = updateFieldValue;
   window.toggleCbOption = toggleCbOption;
   window.toggleCheck = toggleCheck;
   window.updateCell = updateCell;
   window.scrollToSection = scrollToSection;
   window.autoResize = autoResize;
+  window.updateDomainChoice = updateDomainChoice;
+  window.updateDomainCustom = updateDomainCustom;
+  window.updateDomainBoth = updateDomainBoth;
+  window.updateDomainHelp = updateDomainHelp;
   window.updateSeoChoice = updateSeoChoice;
   window.toggleSeoItem = toggleSeoItem;
   
-  // Инициализация
   window.addEventListener('DOMContentLoaded', () => {
     renderSidebar();
     renderMain();
-    // Добавляем подгрузку стилей для динамических textarea
-    document.addEventListener('input', (e) => {
-      if(e.target.classList && e.target.classList.contains('td-input')) autoResize(e.target);
-      if(e.target.classList && e.target.classList.contains('field-input') && e.target.tagName === 'TEXTAREA') autoResize(e.target);
-    });
+    document.addEventListener('input', e => { if(e.target.classList?.contains('td-input')) autoResize(e.target); });
   });
 </script>
 </body>
